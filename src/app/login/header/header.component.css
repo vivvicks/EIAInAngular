@@ -1,8 +1,7 @@
 header
 {
-width:100%;
-height:85px;
-float:left;
-/*background:url(..Images/bg_header.jpg) repeat-x; */ 
- background:#CC0033;  
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+    background:#CC0033;  
 }
