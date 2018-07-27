@@ -1,13 +1,17 @@
-<form (submit)="loginUser($event)">
-    <div>
-        <label>UserName</label>
-        <input type="text">
-    </div>
-    <div>
-      <label>Password</label>
-      <input type="password">
-    </div>
-    <div>
-      <input type="submit" value="Login">
-    </div>
-</form>
+<div class="container-fluid">
+  <form  [formGroup]="loginForm" autocomplete="off" novalidate (ngSubmit)="loginUser(loginForm.value)">
+      <div class="form-group">
+          <label for="loginId" class="control-label col-md-2">UserName: </label>
+          <input type="text" formControlName="loginId" id="loginId" class="form-control" >         
+          <em *ngIf="validateControl('loginId') && hasError('loginId', 'required')">UserName is required</em>
+      </div>
+      <div class="form-group">
+        <label for="password" class="control-label col-md-2">Password: </label>
+        <input type="password" formControlName="password" id="password" class="form-control" >
+        <em *ngIf="validateControl('password') && hasError('password', 'required')">password is required</em>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-info" [disabled]="!loginForm.valid">Sumbit</button>
+      </div>
+  </form>
+</div>

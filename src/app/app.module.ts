@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './shared/services/error-handler.service';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -49,6 +50,8 @@ import { HeaderComponent } from './login/header/header.component';
 import { LoginformComponent } from './login/loginform/loginform.component';
 import { FooterComponent } from './login/footer/footer.component';
 import { HomeComponent } from './Home/home/home.component';
+import { RepositoryService } from './shared/services/repository.service';
+import { EnvironmentUrlService } from './shared/services/environment-url.service';
 
   @NgModule({
     exports: [
@@ -121,7 +124,11 @@ const appRoutes:Routes = [
     MatNativeDateModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    EnvironmentUrlService,
+    RepositoryService,
+    ErrorHandlerService
+  ],
   bootstrap: [AppComponent]
 })
 
