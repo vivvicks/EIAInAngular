@@ -1,0 +1,31 @@
+export interface UserInfo {
+    ValidUser: string;
+    ValidPwd: string;
+    UserMstID: number | null;
+    UserName: string;
+    RoleID: number;
+    RoleSName: string;
+    RoleDName: string;
+    LastLoginTime: string | null;
+    AppPath: string;
+    LastPasswordChangeDate: string;
+    LoginStatus: string;
+    CultureID: number;
+    LoginID: string;
+    IPAddress: string;
+    officeID: number | null;
+    TerminalCode: string;
+    FinancialYear: string;
+    UserTypeEICI: string;
+    AirlineCode: string;
+    ServiceTaxPerc: number | null;
+    PrimaryEduCessPerc: number | null;
+    SecondaryEduCessPerc: number | null;
+    SaleLotAutoMode: string;
+    ReportPreview: string;
+    ValidGracePeriod: string;
+    DaysLeft: number | null;
+    Period: string;
+    PasswordRetry: number | null;
+    PwdRetryCount: number | null;
+}

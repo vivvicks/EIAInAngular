@@ -5,11 +5,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
-import {HttpClientModule} from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {RouterModule, Routes } from '@angular/router';
+import { JwtHelper } from 'angular2-jwt';
 
 import { AppComponent } from './app.component';
 import { MenuItemComponent } from './Menu/menu-item/menu-item.component';
+import { AuthGuard } from './guards/auth-guard.service';
 
 import {MatAutocompleteModule,
   MatBadgeModule,
@@ -52,6 +54,7 @@ import { FooterComponent } from './login/footer/footer.component';
 import { HomeComponent } from './Home/home/home.component';
 import { RepositoryService } from './shared/services/repository.service';
 import { EnvironmentUrlService } from './shared/services/environment-url.service';
+import { JwtInterceptor } from './_helper/jwt.interceptor';
 
   @NgModule({
     exports: [
@@ -98,20 +101,20 @@ import { EnvironmentUrlService } from './shared/services/environment-url.service
   export class MaterialModule {}
 
 
-const appRoutes:Routes = [
+const appRoutes: Routes = [
   {
     path: '',
     component: LoginformComponent
   }
-]
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuItemComponent,
-    HeaderComponent, 
-    LoginformComponent, 
-    FooterComponent, 
+    HeaderComponent,
+    LoginformComponent,
+    FooterComponent,
     HomeComponent
   ],
   imports: [
@@ -125,8 +128,15 @@ const appRoutes:Routes = [
     ReactiveFormsModule,
   ],
   providers: [
+    JwtHelper,
+    AuthGuard,
     EnvironmentUrlService,
     RepositoryService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    },
     ErrorHandlerService
   ],
   bootstrap: [AppComponent]
