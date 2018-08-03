@@ -27,6 +27,12 @@ export class RepositoryService {
     return `${envAddress}/${route}`;
   }
 
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('UserInfo');
+    localStorage.removeItem('jwt');
+}
+
   private generateHeaders() {
     return {
       headers: new HttpHeaders({'Content-Type': 'application/json'})

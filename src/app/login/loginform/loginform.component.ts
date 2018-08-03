@@ -5,7 +5,6 @@ import { md5 } from '../../_interfaces/md5';
 import { FormGroup, FormControl, Validators } from '../../../../node_modules/@angular/forms';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ErrorHandlerService } from '../../shared/services/error-handler.service';
-import 'rxjs/add/operator/first';
 
 
 @Component({
@@ -23,6 +22,7 @@ export class LoginformComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    this.repository.logout();
     this.loginForm = new FormGroup({
       loginId: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
@@ -61,15 +61,17 @@ export class LoginformComponent implements OnInit {
       };
       this.repository.create('api/Login/login', login)
           .subscribe(response => {
-        console.log(response);
+            console.log(response);
         const UserInfo = (<any>response).userInfo;
         const TokenString = (<any>response).tokenString;
-        console.log(TokenString);
-        console.log(UserInfo);
-        localStorage.setItem('jwt', TokenString);
+        localStorage.setItem('UserInfo', JSON.stringify({UserInfo : UserInfo}));
+        localStorage.setItem('jwt',  JSON.stringify({TokenString : TokenString}));
         this.invalidLogin = false;
+        this.router.navigate(['home']);
       }, err => {
         this.invalidLogin = true;
+        this.errorHandler.handleError(err);
+        this.errorMessage = this.errorHandler.errorMessage;
       });
     }
   }
