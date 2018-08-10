@@ -1,5 +1,17 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-<div class="mat-app-background basic-container">
-  <app-menu-item></app-menu-item>
+<div>
+    <div>
+        <app-header></app-header>
+    </div>
+    <div>
+        <div>
+            <app-menu-item></app-menu-item>
+        </div>
+    </div>
+    <div class="row">
+        <router-outlet></router-outlet>
+    </div>
+    <div>
+        <app-footer></app-footer>
+    </div>
 </div>
