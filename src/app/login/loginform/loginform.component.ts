@@ -22,7 +22,7 @@ export class LoginformComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.repository.logout();
+    this.Clear();
     this.loginForm = new FormGroup({
       loginId: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
@@ -61,7 +61,6 @@ export class LoginformComponent implements OnInit {
       };
       this.repository.create('api/Login/login', login)
           .subscribe(response => {
-            console.log(response);
         const UserInfo = (<any>response).userInfo;
         const TokenString = (<any>response).tokenString;
         localStorage.setItem('UserInfo', JSON.stringify({UserInfo : UserInfo}));
@@ -75,6 +74,12 @@ export class LoginformComponent implements OnInit {
       });
     }
   }
+
+  Clear() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('UserInfo');
+    localStorage.removeItem('jwt');
+}
 
    getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;

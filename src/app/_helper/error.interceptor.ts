@@ -13,7 +13,8 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(catchError(err => {
             if (err.status === 401) {
                 // auto logout if 401 response returned from api
-                this.repository.logout();
+                localStorage.removeItem('UserInfo');
+                localStorage.removeItem('jwt');
                 location.reload(true);
             }
              
