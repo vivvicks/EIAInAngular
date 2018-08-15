@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class MenuItemComponent implements OnInit {
   public errorMessage = '';
-  public lstFinYear : any;
+  public lstFinYear: any;
   public loginID = '';
 
 
@@ -20,11 +20,11 @@ export class MenuItemComponent implements OnInit {
 
   ngOnInit() {
     this.GetFinYear();
-    var currentUser = JSON.parse(localStorage.getItem('UserInfo'));
+    const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
     this.loginID = currentUser.UserInfo[0].loginID;
   }
 
-  GetFinYear(){
+  GetFinYear() {
     this.repository.getData('api/Utility/GetFinaltialYear')
           .subscribe(response => {
             this.lstFinYear = response;
@@ -34,7 +34,7 @@ export class MenuItemComponent implements OnInit {
       });
   }
 
-  LogOut(){
+  LogOut() {
     localStorage.removeItem('UserInfo');
     localStorage.removeItem('jwt');
     this.router.navigate(['']);
