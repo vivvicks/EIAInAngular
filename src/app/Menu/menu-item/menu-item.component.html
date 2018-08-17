@@ -1,9 +1,18 @@
 <div class="mat-app-background basic-container">
-  <button mat-button [matMenuTriggerFor]="animals">Home</button>
+  <button mat-button [matMenuTriggerFor]="Home">click here</button>
 
-  <mat-menu #animals="matMenu">
+  <mat-menu #Home="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="userManagement">User Management</button>
     <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
     <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+  </mat-menu>
+
+  <mat-menu #userManagement="matMenu">
+      <button mat-menu-item>User Creation</button>
+      <button mat-menu-item>Role Creation</button>
+      <button mat-menu-item>Role Function Map</button>
+      <button mat-menu-item>User Role Map</button>
+      <button mat-menu-item>Profile Creation</button>      
   </mat-menu>
 
   <mat-menu #vertebrates="matMenu">
