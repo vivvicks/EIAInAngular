@@ -56,6 +56,7 @@ import { RepositoryService } from './shared/services/repository.service';
 import { EnvironmentUrlService } from './shared/services/environment-url.service';
 import { JwtInterceptor } from './_helper/jwt.interceptor';
 import { ErrorInterceptor } from './_helper/error.interceptor';
+import { UserListComponent } from './UserManagement/UserCreation/user-list/user-list.component';
 
   @NgModule({
     exports: [
@@ -110,8 +111,11 @@ const appRoutes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuard]
-  }
+    canActivate: [AuthGuard],
+    children : [
+      { path: 'usercreation', loadChildren: './UserManagement/UserCreation/userCreation.module#UserCreationModule' }
+    ]
+  },
 ];
 
 @NgModule({
@@ -131,7 +135,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     MaterialModule,
     MatNativeDateModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     JwtHelper,

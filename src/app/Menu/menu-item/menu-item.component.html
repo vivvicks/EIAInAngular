@@ -8,7 +8,7 @@
   </mat-menu>
 
   <mat-menu #userManagement="matMenu">
-      <button mat-menu-item>User Creation</button>
+      <button mat-menu-item [routerLink]="['/home/usercreation/list']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">User Creation</button>
       <button mat-menu-item>Role Creation</button>
       <button mat-menu-item>Role Function Map</button>
       <button mat-menu-item>User Role Map</button>
