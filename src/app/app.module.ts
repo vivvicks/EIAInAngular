@@ -12,6 +12,7 @@ import { JwtHelper } from 'angular2-jwt';
 import { AppComponent } from './app.component';
 import { MenuItemComponent } from './Menu/menu-item/menu-item.component';
 import { AuthGuard } from './guards/auth-guard.service';
+import { AgGridModule } from 'ag-grid-angular';
 
 import {MatAutocompleteModule,
   MatBadgeModule,
@@ -56,7 +57,6 @@ import { RepositoryService } from './shared/services/repository.service';
 import { EnvironmentUrlService } from './shared/services/environment-url.service';
 import { JwtInterceptor } from './_helper/jwt.interceptor';
 import { ErrorInterceptor } from './_helper/error.interceptor';
-import { UserListComponent } from './UserManagement/UserCreation/user-list/user-list.component';
 
   @NgModule({
     exports: [
@@ -135,7 +135,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     MaterialModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgGridModule.withComponents([])
   ],
   providers: [
     JwtHelper,
