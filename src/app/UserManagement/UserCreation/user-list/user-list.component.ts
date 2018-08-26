@@ -10,35 +10,30 @@ import { ErrorHandlerService } from '../../../shared/services/error-handler.serv
 export class UserListComponent implements OnInit {
 
   public errorMessage = '';
-  vwUserDetail:any;
+  vwUserDetail: any;
 
   columnDefs = [
-    {headerName: 'Login ID', field: 'LoginID' },
-    {headerName: 'User Name', field: 'FirstName' + 'LastName' },
-    {headerName: 'Email ID', field: 'Email'},
-    {headerName: 'Lock Status', field: 'LockStatus'},
-    {headerName: 'Active Status', field: 'ActiveStatus'},
-    {headerName: 'Date Of Birth', field: 'DOB'},
+    {headerName: 'Login ID', field: 'loginID' },
+    {headerName: 'User Name', field: 'firstName' },
+    {headerName: 'Email ID', field: 'email'},
+    {headerName: 'Lock Status', field: 'lockStatus'},
+    {headerName: 'Active Status', field: 'activeStatus'},
+    {headerName: 'Date Of Birth', field: 'dob'},
     {headerName: 'Reset Password', field: ''},
-    {headerName: 'Terminal Name', field: 'P1'}
+    {headerName: 'Terminal Name', field: 'p1'}
 ];
-  
+
 constructor(private repository: RepositoryService,
-              private errorHandler: ErrorHandlerService) 
-              { }
+              private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
    this.GetAllUsers();
   }
 
-  ngAfterViewInit() {
-    
-  }
-
   GetAllUsers() {
     this.repository.getData('api/UserCreation/GetAllUsers?TerminalCode=DEL')
           .subscribe(response => {
-            this.vwUserDetail = JSON.stringify(response);
+            this.vwUserDetail = response;
           }, err => {
         this.errorHandler.handleError(err);
         this.errorMessage = this.errorHandler.errorMessage;
