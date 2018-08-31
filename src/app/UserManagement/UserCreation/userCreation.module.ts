@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { JwPaginationComponent } from 'jw-angular-pagination';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { AgGridModule } from 'ag-grid-angular';
     AgGridModule.withComponents([])
   ],
   declarations: [
-    UserListComponent
+    UserListComponent,
+    JwPaginationComponent
   ]
 })
 export class UserCreationModule { }

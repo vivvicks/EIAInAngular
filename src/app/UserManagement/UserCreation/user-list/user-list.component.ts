@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RepositoryService } from '../../../shared/services/repository.service';
 import { ErrorHandlerService } from '../../../shared/services/error-handler.service';
+import { VW_UserDetail } from '../../../_interfaces/UserManagement/VWUserDetail.modal';
 
 @Component({
   selector: 'app-user-list',
@@ -10,19 +11,9 @@ import { ErrorHandlerService } from '../../../shared/services/error-handler.serv
 export class UserListComponent implements OnInit {
 
   public errorMessage = '';
-  vwUserDetail: any;
-
-  columnDefs = [
-    {headerName: 'Login ID', field: 'loginID' },
-    {headerName: 'User Name', field: 'firstName' },
-    {headerName: 'Email ID', field: 'email'},
-    {headerName: 'Lock Status', field: 'lockStatus'},
-    {headerName: 'Active Status', field: 'activeStatus'},
-    {headerName: 'Date Of Birth', field: 'dob'},
-    {headerName: 'Reset Password', field: ''},
-    {headerName: 'Terminal Name', field: 'p1'}
-];
-
+  vwUserDetail: Array<VW_UserDetail>;
+  pageOfItems: Array<VW_UserDetail>;
+  
 constructor(private repository: RepositoryService,
               private errorHandler: ErrorHandlerService) { }
 
@@ -32,13 +23,18 @@ constructor(private repository: RepositoryService,
 
   GetAllUsers() {
     this.repository.getData('api/UserCreation/GetAllUsers?TerminalCode=DEL')
-          .subscribe(response => {
-            this.vwUserDetail = response;
+          .subscribe(response => {           
+           this.vwUserDetail = response as Array<VW_UserDetail>;           
           }, err => {
         this.errorHandler.handleError(err);
         this.errorMessage = this.errorHandler.errorMessage;
       });
   }
+
+  onChangePage(pageOfItems: Array<VW_UserDetail>) {    
+    this.pageOfItems = pageOfItems;
+}
+
 }
 
 

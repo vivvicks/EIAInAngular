@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EnvironmentUrlService } from './environment-url.service';
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class RepositoryService {
