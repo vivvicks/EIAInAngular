@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
-import { AgGridModule } from 'ag-grid-angular';
-import { JwPaginationComponent } from 'jw-angular-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -11,11 +11,12 @@ import { JwPaginationComponent } from 'jw-angular-pagination';
     RouterModule.forChild([
       { path: 'list', component: UserListComponent }
     ]),
-    AgGridModule.withComponents([])
+    NgxPaginationModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
-    UserListComponent,
-    JwPaginationComponent
+    UserListComponent
   ]
 })
 export class UserCreationModule { }
