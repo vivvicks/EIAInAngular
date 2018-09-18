@@ -1,17 +1,17 @@
 <div class="row">
     <div class="col-md-offset-10 col-md-2">
-        <a>Create owner</a>
+        <a [routerLink]="['/home/usercreation/create']">Add User</a>
     </div>
 </div>
 <br>
 <div class="row">
     <div class="col-md-12">
         <div class="table-responsive">
-                View <select (change)="selectChangeHandler($event.target.value)" (ngModel)="itemsPerPage.id" >
-                        <option *ngFor="let item of itemsPerPages" value= {{item.id}}>
-                            {{item.name}}
-                        </option>
-                    </select> records at a time.
+            View <select (change)="selectChangeHandler($event.target.value)" (ngModel)="itemsPerPage.id">
+                <option *ngFor="let item of itemsPerPages" value={{item.id}}>
+                    {{item.name}}
+                </option>
+            </select> records at a time.
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -28,19 +28,22 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of vwUserDetail | paginate: { itemsPerPage: perpage, currentPage: p }">
-                        <th></th>
+                        <td><input type="checkbox" /></td>
                         <td>{{item.loginID}}</td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.email}}</td>
                         <td>{{item.lockStatus}}</td>
                         <td>{{item.activeStatus}}</td>
                         <td>{{item.dob | date: 'dd/MM/yyyy'}}</td>
-                        <td></td>
+                        <td><a href="javascript:void(0);">
+                                <span id="Label3" style="vertical-align: middle;">Reset password</span>
+                            </a>
+                        </td>
                         <td>{{item.p1}}</td>
                     </tr>
                 </tbody>
             </table>
-        </div>        
+        </div>
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 </div>

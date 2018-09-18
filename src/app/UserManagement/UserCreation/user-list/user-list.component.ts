@@ -29,8 +29,6 @@ constructor(private repository: RepositoryService,
               private errorHandler: ErrorHandlerService) { }
 
   selectChangeHandler(id) {
-    console.log('id' + id);
-    console.log('Hi' + this.perpage);
     this.itemsPerPage = null;
     this.perpage = null;
     for (let i = 0; i < this.itemsPerPages.length; i++) {
@@ -40,9 +38,7 @@ constructor(private repository: RepositoryService,
         }
       }
     }
-    console.log(this.itemsPerPage.name);
     this.perpage = +this.itemsPerPage.name;
-    console.log(this.perpage);
   }
 
   ngOnInit() {

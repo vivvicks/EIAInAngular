@@ -1,0 +1,285 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <h3>User Creation</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          First Name
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <input id="firstName" class="form-control" name="firstName" type="text" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          Middle Name
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <input id="middleName" class="form-control" type="text" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          Last Name
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <input id="LastName" class="form-control" name="LastName" type="text" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          Father Name
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <input id="fatherName" class="form-control" name="fatherName" type="text" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          DOB
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <input id="DOB" mydatepicker class="form-control" name="DOB" type="text" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          Gender
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <select class="form-control" name="Gendertype" id="Gendertype" 
+                  (change)="selectGender($event.target.value)" (ngModel)="genderItem.id">
+            <option *ngFor="let gender of genderLst" value={{gender.id}}>
+              {{gender.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          Contact No
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <input id="contactno" class="form-control" name="contactno" type="text" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          Address1
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <input id="Address1" class="form-control" name="Address1" type="text" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          Address2
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <input id="Address2" class="form-control" type="text" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          Address3
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <input id="Address3" class="form-control" type="text" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          LoginID
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <input id="LoginID" class="form-control" name="LoginID" type="text" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          EmailID
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <input id="EmailID" class="form-control" required name="EmailID" type="text" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          Activated
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <input id="Activated" class="form-control" type="checkbox" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          ProfileID
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <select class="form-control" name="profiletype" id="profiletype">
+            <option name="select" id="0" value="">--Select--</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          Terminal Code
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <select class="form-control" name="TermicalCodetype" id="TermicalCodetype">
+            <option name="select" id="0" value="">--Select--</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+          Airline
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <select class="form-control" name="AirlineListtype" id="AirlineListtype">
+            <option name="select" id="0" value="">--Select--</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <div class="row">
+        <div class="col-xs-3 col-sm-4">
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <input type="submit" class="btn btn-success" value="Create User" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
