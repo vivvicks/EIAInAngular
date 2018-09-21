@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RepositoryService } from '../../../shared/services/repository.service';
 import { ErrorHandlerService } from '../../../shared/services/error-handler.service';
 import { VW_UserDetail } from '../../../_interfaces/UserManagement/VWUserDetail.modal';
-import { dropdownlist } from '../../../_interfaces/dropdownlist.model';
+import { DropDownList } from '../../../_interfaces/dropdownlist.model';
 
 @Component({
   selector: 'app-user-list',
@@ -13,16 +13,16 @@ export class UserListComponent implements OnInit {
   p: number = 1;
   public errorMessage = '';
   vwUserDetail: VW_UserDetail[];
-  itemsPerPage: dropdownlist = new dropdownlist(1, '5');
+  itemsPerPage: DropDownList = new DropDownList(1, '5');
   perpage: number = +this.itemsPerPage.name;
 
   itemsPerPages = [
-    new dropdownlist(1, '5'),
-    new dropdownlist(2, '10'),
-    new dropdownlist(3, '20'),
-    new dropdownlist(4, '30'),
-    new dropdownlist(5, '40'),
-    new dropdownlist(6, '50')
+    new DropDownList(1, '5'),
+    new DropDownList(2, '10'),
+    new DropDownList(3, '20'),
+    new DropDownList(4, '30'),
+    new DropDownList(5, '40'),
+    new DropDownList(6, '50')
   ];
 
 constructor(private repository: RepositoryService,
