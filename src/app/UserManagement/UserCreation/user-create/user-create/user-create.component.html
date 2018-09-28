@@ -1,3 +1,4 @@
+<form [formGroup]="createUserForm" autocomplete="off" novalidate >
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-8">
@@ -75,7 +76,10 @@
           DOB
         </div>
         <div class="col-xs-3 col-sm-4">
-          <input id="DOB" mydatepicker class="form-control" name="DOB" type="text" />
+          <input id="DOB" appDatepicker formControlName="DOB" class="form-control" name="DOB" type="text" />
+        </div>
+        <div class="col-xs-3 col-sm-4">
+          <em *ngIf="validateControl('DOB') && hasError('DOB', 'required')">Date of birth is required</em>
         </div>
       </div>
     </div>
@@ -91,8 +95,7 @@
           Gender
         </div>
         <div class="col-xs-3 col-sm-4">
-          <select class="form-control" name="Gendertype" id="Gendertype" 
-                  (change)="selectGender($event.target.value)">
+          <select class="form-control" name="Gendertype" id="Gendertype" (change)="selectGender($event.target.value)">
             <option *ngFor="let gender of genderLst" [value]="gender.id">
               {{gender.name}}
             </option>
@@ -224,8 +227,7 @@
           ProfileID
         </div>
         <div class="col-xs-3 col-sm-4">
-          <select class="form-control" name="profiletype" id="profiletype" 
-                  (change)="selectprofile($event.target.value)">
+          <select class="form-control" name="profiletype" id="profiletype" (change)="selectprofile($event.target.value)">
             <option *ngFor="let profile of profilelst" [value]="profile.id">
               {{profile.name}}
             </option>
@@ -245,8 +247,10 @@
           Terminal Code
         </div>
         <div class="col-xs-3 col-sm-4">
-          <select class="form-control" name="TermicalCodetype" id="TermicalCodetype">
-            <option name="select" id="0" value="">--Select--</option>
+          <select class="form-control" name="TerminalCodetype" id="TerminalCodetype" (change)="selectTerminal($event.target.value)">
+            <option *ngFor="let terminal of terminalst" [value]="terminal.id">
+              {{terminal.name}}
+            </option>
           </select>
         </div>
       </div>
@@ -263,8 +267,10 @@
           Airline
         </div>
         <div class="col-xs-3 col-sm-4">
-          <select class="form-control" name="AirlineListtype" id="AirlineListtype">
-            <option name="select" id="0" value="">--Select--</option>
+          <select class="form-control" name="Airlinetype" id="Airlinetype" (change)="selectAirline($event.target.value)">
+            <option *ngFor="let Airline of lstAirline" [value]="Airline.airlineCode">
+              {{Airline.airlineName}}
+            </option>
           </select>
         </div>
       </div>
@@ -286,3 +292,4 @@
     </div>
   </div>
 </div>
+</form>

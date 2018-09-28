@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DropDownList } from 'src/app/_interfaces/dropdownlist.model';
+import { RepositoryService } from '../../../../shared/services/repository.service';
+import { ErrorHandlerService } from '../../../../shared/services/error-handler.service';
+import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-create',
@@ -7,32 +11,46 @@ import { DropDownList } from 'src/app/_interfaces/dropdownlist.model';
   styleUrls: ['./user-create.component.css']
 })
 export class UserCreateComponent implements OnInit {
+  public errorMessage = '';
+  public lstAirline: any;
+  public selectedAirline: any;
+  public createUserForm: FormGroup;
 
   public genderLst: DropDownList[] = [
-    new DropDownList(1, 'Select'),
-    new DropDownList(2, 'Male'),
-    new DropDownList(3, 'Female')
+    new DropDownList(0, 'Select'),
+    new DropDownList(1, 'Male'),
+    new DropDownList(2, 'Female')
   ];
 
   public selectedGender: DropDownList = this.genderLst[0];
 
   public profilelst: DropDownList[] = [
-    new DropDownList(1, 'Select'),
-    new DropDownList(2, 'UserProfile'),
-    new DropDownList(3, 'Profile')
+    new DropDownList(0, 'Select'),
+    new DropDownList(1, 'UserProfile'),
+    new DropDownList(2, 'Profile')
   ];
 
   public selectedProfile: DropDownList = this.profilelst[0];
 
   public terminalst: DropDownList[] = [
-    new DropDownList(1, 'Select'),
-    new DropDownList(2, 'Delhi'),
-    new DropDownList(3, 'Banglore')
+    new DropDownList(0, 'Select'),
+    new DropDownList(1, 'Delhi'),
+    new DropDownList(2, 'Banglore'),
+    new DropDownList(3, 'Mumbai')
   ];
 
-  public selectedGender: DropDownList = this.genderLst[0];
+  public selectedterminal: DropDownList = this.genderLst[0];
 
-  constructor() { }
+  constructor(private repository: RepositoryService,
+    private errorHandler: ErrorHandlerService,
+    private router: Router) { }
+
+  ngOnInit() {
+    this.createUserForm = new FormGroup({
+      DOB: new FormControl('', [Validators.required]),
+    });
+    this.GetAirlineLst();
+  }
 
   selectGender(id) {
     this.selectedGender = null;
@@ -58,7 +76,58 @@ export class UserCreateComponent implements OnInit {
     console.log(this.selectedProfile);
   }
 
-  ngOnInit() {
+  selectTerminal(id) {
+    this.selectedterminal = null;
+    for (let i = 0; i < this.terminalst.length; i++) {
+      {
+        if (this.terminalst[i].id == id) {
+          this.selectedterminal = this.terminalst[i];
+        }
+      }
+    }
+    console.log(this.selectedterminal);
   }
 
+  selectAirline(AirlineCode) {
+    this.selectedterminal = null;
+    for (let i = 0; i < this.lstAirline.length; i++) {
+      {
+        if (this.lstAirline[i].airlineCode == AirlineCode) {
+          this.selectedAirline = this.lstAirline[i];
+        }
+      }
+    }
+    console.log(this.selectedAirline);
+  }
+
+  GetAirlineLst() {
+    this.repository.getData('api/Utility/GetAirlineList')
+          .subscribe(response => {
+            this.lstAirline = response;
+            this.lstAirline.splice(0, 0, {airlineCode: '0', airlineName: 'Select'});
+            console.log(this.lstAirline);
+      }, err => {
+        this.errorHandler.handleError(err);
+        this.errorMessage = this.errorHandler.errorMessage;
+      });
+  }
+
+  public validateControl(controlName: string) {
+    if (this.createUserForm.controls[controlName].invalid && this.createUserForm.controls[controlName].touched) {
+      return true;
+    }
+    return false;
+  }
+
+  public hasError(controlName: string, errorName: string) {
+    if (this.createUserForm.controls[controlName].hasError(errorName)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  public executeDatePicker(event) {
+    this.createUserForm.patchValue({ 'DOB': event });
+  }
 }
