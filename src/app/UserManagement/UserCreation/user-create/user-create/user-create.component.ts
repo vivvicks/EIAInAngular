@@ -4,6 +4,7 @@ import { RepositoryService } from '../../../../shared/services/repository.servic
 import { ErrorHandlerService } from '../../../../shared/services/error-handler.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-user-create',
@@ -15,6 +16,7 @@ export class UserCreateComponent implements OnInit {
   public lstAirline: any;
   public selectedAirline: any;
   public createUserForm: FormGroup;
+  datePickerConfig: Partial<BsDatepickerConfig>;
 
   public genderLst: DropDownList[] = [
     new DropDownList(0, 'Select'),
@@ -43,7 +45,12 @@ export class UserCreateComponent implements OnInit {
 
   constructor(private repository: RepositoryService,
     private errorHandler: ErrorHandlerService,
-    private router: Router) { }
+    private router: Router) {
+      this.datePickerConfig = Object.assign({},
+        {
+          dateInputFormat: 'DD/MM/YYYY'
+        });
+     }
 
   ngOnInit() {
     this.createUserForm = new FormGroup({
@@ -61,7 +68,6 @@ export class UserCreateComponent implements OnInit {
         }
       }
     }
-    console.log(this.selectedGender);
   }
 
   selectprofile(id) {
@@ -73,7 +79,6 @@ export class UserCreateComponent implements OnInit {
         }
       }
     }
-    console.log(this.selectedProfile);
   }
 
   selectTerminal(id) {
@@ -85,7 +90,6 @@ export class UserCreateComponent implements OnInit {
         }
       }
     }
-    console.log(this.selectedterminal);
   }
 
   selectAirline(AirlineCode) {
@@ -97,7 +101,6 @@ export class UserCreateComponent implements OnInit {
         }
       }
     }
-    console.log(this.selectedAirline);
   }
 
   GetAirlineLst() {
@@ -105,7 +108,6 @@ export class UserCreateComponent implements OnInit {
           .subscribe(response => {
             this.lstAirline = response;
             this.lstAirline.splice(0, 0, {airlineCode: '0', airlineName: 'Select'});
-            console.log(this.lstAirline);
       }, err => {
         this.errorHandler.handleError(err);
         this.errorMessage = this.errorHandler.errorMessage;
@@ -125,9 +127,5 @@ export class UserCreateComponent implements OnInit {
     }
 
     return false;
-  }
-
-  public executeDatePicker(event) {
-    this.createUserForm.patchValue({ 'DOB': event });
   }
 }
