@@ -54,7 +54,11 @@ export class UserCreateComponent implements OnInit {
 
   ngOnInit() {
     this.createUserForm = new FormGroup({
-      DOB: new FormControl('', [Validators.required]),
+      firstName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      middleName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      LastName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      fatherName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      DOB: new FormControl('', [Validators.required])
     });
     this.GetAirlineLst();
   }

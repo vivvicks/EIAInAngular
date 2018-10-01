@@ -12,7 +12,10 @@
             First Name
           </div>
           <div class="col-xs-3 col-sm-4">
-            <input id="firstName" class="form-control" name="firstName" type="text" />
+            <input id="firstName" formControlName="firstName"  class="form-control" name="firstName" type="text" />
+          </div>
+          <div class="col-xs-3 col-sm-4">
+            <em *ngIf="validateControl('firstName') && hasError('firstName', 'required')">FirstName is required</em>
           </div>
         </div>
       </div>
@@ -28,7 +31,10 @@
             Middle Name
           </div>
           <div class="col-xs-3 col-sm-4">
-            <input id="middleName" class="form-control" type="text" />
+            <input id="middleName" formControlName="middleName" class="form-control" type="text" />
+          </div>
+          <div class="col-xs-3 col-sm-4">
+            <em *ngIf="validateControl('middleName') && hasError('middleName', 'required')">MiddleName is required</em>
           </div>
         </div>
       </div>
@@ -44,7 +50,10 @@
             Last Name
           </div>
           <div class="col-xs-3 col-sm-4">
-            <input id="LastName" class="form-control" name="LastName" type="text" />
+            <input id="LastName" formControlName="LastName" class="form-control" name="LastName" type="text" />
+          </div>
+          <div class="col-xs-3 col-sm-4">
+            <em *ngIf="validateControl('LastName') && hasError('LastName', 'required')">LastName is required</em>
           </div>
         </div>
       </div>
@@ -60,7 +69,10 @@
             Father Name
           </div>
           <div class="col-xs-3 col-sm-4">
-            <input id="fatherName" class="form-control" name="fatherName" type="text" />
+            <input id="fatherName" formControlName="fatherName"  class="form-control" name="fatherName" type="text" />
+          </div>
+          <div class="col-xs-3 col-sm-4">
+            <em *ngIf="validateControl('fatherName') && hasError('fatherName', 'required')">FatherName is required</em>
           </div>
         </div>
       </div>
