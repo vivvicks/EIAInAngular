@@ -6,6 +6,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UserCreateComponent } from './user-create/user-create/user-create.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { SelectRequireValidatorDirective } from '../../shared/directives/select-require-validator.directive';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
   ],
   declarations: [
     UserListComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    SelectRequireValidatorDirective
   ]
 })
 export class UserCreationModule { }

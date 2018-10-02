@@ -113,7 +113,10 @@ const appRoutes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuard],
     children : [
-      { path: 'usercreation', loadChildren: './UserManagement/UserCreation/userCreation.module#UserCreationModule' }
+      {
+        path: 'usercreation',
+        loadChildren: './UserManagement/UserCreation/userCreation.module#UserCreationModule'
+      }
     ]
   },
 ];

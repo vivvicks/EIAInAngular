@@ -3,8 +3,8 @@ import { DropDownList } from 'src/app/_interfaces/dropdownlist.model';
 import { RepositoryService } from '../../../../shared/services/repository.service';
 import { ErrorHandlerService } from '../../../../shared/services/error-handler.service';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { UserDetail } from '../../../../_interfaces/UserManagement/VWUserDetail.modal'
 
 @Component({
   selector: 'app-user-create',
@@ -15,11 +15,43 @@ export class UserCreateComponent implements OnInit {
   public errorMessage = '';
   public lstAirline: any;
   public selectedAirline: any;
-  public createUserForm: FormGroup;
   datePickerConfig: Partial<BsDatepickerConfig>;
+  public userdetail: UserDetail = {
+    userMstID: null,
+    firstName: null,
+    middleName: null,
+    lastName: null,
+    dOB: null,
+    gender: 'Select',
+    contactNo: null,
+    email: null,
+    fatherName: null,
+    address1: null,
+    address2: null,
+    address3: null,
+    empCode: null,
+    p1: 'Select',
+    p2: null,
+    p3: null,
+    loginID: null,
+    loginMId: null,
+    password: null,
+    activeStatus: null,
+    profileId: -1,
+    contactPerson: null,
+    applicationName: null,
+    rPassword: null,
+    mCAddress: null,
+    lockStatus: null,
+    name: null,
+    mC_Status: null,
+    status: null,
+    createdBy: null,
+    createdOn: null,
+  };
+
 
   public genderLst: DropDownList[] = [
-    new DropDownList(0, 'Select'),
     new DropDownList(1, 'Male'),
     new DropDownList(2, 'Female')
   ];
@@ -27,7 +59,6 @@ export class UserCreateComponent implements OnInit {
   public selectedGender: DropDownList = this.genderLst[0];
 
   public profilelst: DropDownList[] = [
-    new DropDownList(0, 'Select'),
     new DropDownList(1, 'UserProfile'),
     new DropDownList(2, 'Profile')
   ];
@@ -35,7 +66,6 @@ export class UserCreateComponent implements OnInit {
   public selectedProfile: DropDownList = this.profilelst[0];
 
   public terminalst: DropDownList[] = [
-    new DropDownList(0, 'Select'),
     new DropDownList(1, 'Delhi'),
     new DropDownList(2, 'Banglore'),
     new DropDownList(3, 'Mumbai')
@@ -53,13 +83,6 @@ export class UserCreateComponent implements OnInit {
      }
 
   ngOnInit() {
-    this.createUserForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      middleName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      LastName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      fatherName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      DOB: new FormControl('', [Validators.required])
-    });
     this.GetAirlineLst();
   }
 
@@ -116,20 +139,5 @@ export class UserCreateComponent implements OnInit {
         this.errorHandler.handleError(err);
         this.errorMessage = this.errorHandler.errorMessage;
       });
-  }
-
-  public validateControl(controlName: string) {
-    if (this.createUserForm.controls[controlName].invalid && this.createUserForm.controls[controlName].touched) {
-      return true;
-    }
-    return false;
-  }
-
-  public hasError(controlName: string, errorName: string) {
-    if (this.createUserForm.controls[controlName].hasError(errorName)) {
-      return true;
-    }
-
-    return false;
   }
 }

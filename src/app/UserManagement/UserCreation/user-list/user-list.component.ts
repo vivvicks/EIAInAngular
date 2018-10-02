@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RepositoryService } from '../../../shared/services/repository.service';
 import { ErrorHandlerService } from '../../../shared/services/error-handler.service';
-import { VW_UserDetail } from '../../../_interfaces/UserManagement/VWUserDetail.modal';
+import { UserDetail } from '../../../_interfaces/UserManagement/VWUserDetail.modal';
 import { DropDownList } from '../../../_interfaces/dropdownlist.model';
 
 @Component({
@@ -12,7 +12,7 @@ import { DropDownList } from '../../../_interfaces/dropdownlist.model';
 export class UserListComponent implements OnInit {
   p: number = 1;
   public errorMessage = '';
-  vwUserDetail: VW_UserDetail[];
+  vwUserDetail: UserDetail[];
   itemsPerPage: DropDownList = new DropDownList(1, '5');
   perpage: number = +this.itemsPerPage.name;
 
@@ -48,7 +48,7 @@ constructor(private repository: RepositoryService,
   GetAllUsers() {
     this.repository.getData('api/UserCreation/GetAllUsers?TerminalCode=DEL')
           .subscribe(response => {
-           this.vwUserDetail = response as VW_UserDetail[];
+           this.vwUserDetail = response as UserDetail[];
           }, err => {
         this.errorHandler.handleError(err);
         this.errorMessage = this.errorHandler.errorMessage;

@@ -1,4 +1,4 @@
-export interface VW_UserDetail {
+export interface UserDetail {
     userMstID: number;
     firstName: string;
     middleName: string;
