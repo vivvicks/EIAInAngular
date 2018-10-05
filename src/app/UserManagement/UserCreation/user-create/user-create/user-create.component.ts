@@ -5,6 +5,7 @@ import { ErrorHandlerService } from '../../../../shared/services/error-handler.s
 import { Router } from '@angular/router';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { UserDetail } from '../../../../_interfaces/UserManagement/VWUserDetail.modal'
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-create',
@@ -23,8 +24,8 @@ export class UserCreateComponent implements OnInit {
     lastName: null,
     dOB: null,
     gender: 'Select',
-    contactNo: null,
-    email: null,
+    contactNo: '',
+    email: '',
     fatherName: null,
     address1: null,
     address2: null,
@@ -49,7 +50,8 @@ export class UserCreateComponent implements OnInit {
     createdBy: null,
     createdOn: null,
   };
-
+  mobnumPattern = '((\\+91-?)|0)?[0-9]{10}$';
+  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
 
   public genderLst: DropDownList[] = [
     new DropDownList(1, 'Male'),
@@ -86,50 +88,6 @@ export class UserCreateComponent implements OnInit {
     this.GetAirlineLst();
   }
 
-  selectGender(id) {
-    this.selectedGender = null;
-    for (let i = 0; i < this.genderLst.length; i++) {
-      {
-        if (this.genderLst[i].id == id) {
-          this.selectedGender = this.genderLst[i];
-        }
-      }
-    }
-  }
-
-  selectprofile(id) {
-    this.selectedProfile = null;
-    for (let i = 0; i < this.profilelst.length; i++) {
-      {
-        if (this.profilelst[i].id == id) {
-          this.selectedProfile = this.profilelst[i];
-        }
-      }
-    }
-  }
-
-  selectTerminal(id) {
-    this.selectedterminal = null;
-    for (let i = 0; i < this.terminalst.length; i++) {
-      {
-        if (this.terminalst[i].id == id) {
-          this.selectedterminal = this.terminalst[i];
-        }
-      }
-    }
-  }
-
-  selectAirline(AirlineCode) {
-    this.selectedterminal = null;
-    for (let i = 0; i < this.lstAirline.length; i++) {
-      {
-        if (this.lstAirline[i].airlineCode == AirlineCode) {
-          this.selectedAirline = this.lstAirline[i];
-        }
-      }
-    }
-  }
-
   GetAirlineLst() {
     this.repository.getData('api/Utility/GetAirlineList')
           .subscribe(response => {
@@ -140,4 +98,12 @@ export class UserCreateComponent implements OnInit {
         this.errorMessage = this.errorHandler.errorMessage;
       });
   }
+
+  CreateUser(form: NgForm) {
+    console.log('hi');
+      if (form.invalid) {
+          return;
+      }
+      console.log(form);
+    }
 }

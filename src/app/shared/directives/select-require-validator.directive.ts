@@ -12,8 +12,6 @@ import { Directive, Input } from '@angular/core';
 export class SelectRequireValidatorDirective implements Validator {
     @Input() appSelectValidator: string;
     validate(control: AbstractControl): {[key: string]: any} | null {
-        console.log(control.value);
-        console.log(this.appSelectValidator);
         return control.value == this.appSelectValidator ? {'defaultSelected': true} : null;
     }
 }
