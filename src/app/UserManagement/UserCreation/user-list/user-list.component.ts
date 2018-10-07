@@ -3,6 +3,7 @@ import { RepositoryService } from '../../../shared/services/repository.service';
 import { ErrorHandlerService } from '../../../shared/services/error-handler.service';
 import { UserDetail } from '../../../_interfaces/UserManagement/VWUserDetail.modal';
 import { DropDownList } from '../../../_interfaces/dropdownlist.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -26,7 +27,8 @@ export class UserListComponent implements OnInit {
   ];
 
 constructor(private repository: RepositoryService,
-              private errorHandler: ErrorHandlerService) { }
+              private errorHandler: ErrorHandlerService,
+              private router: Router) { }
 
   selectChangeHandler(id) {
     this.itemsPerPage = null;
@@ -42,11 +44,12 @@ constructor(private repository: RepositoryService,
   }
 
   ngOnInit() {
-   this.GetAllUsers();
+    const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
+    this.GetAllUsers(currentUser.UserInfo[0].terminalCode);
   }
 
-  GetAllUsers() {
-    this.repository.getData('api/UserCreation/GetAllUsers?TerminalCode=DEL')
+  public GetAllUsers(TerminalCode) {
+    this.repository.getData('api/UserCreation/GetAllUsers?TerminalCode=' + TerminalCode)
           .subscribe(response => {
            this.vwUserDetail = response as UserDetail[];
           }, err => {
@@ -54,6 +57,12 @@ constructor(private repository: RepositoryService,
         this.errorMessage = this.errorHandler.errorMessage;
       });
   }
+
+  public redirectToUpdatePage(id) {
+    let updateUrl = `/usercreation/update/${id}`;
+    this.router.navigate([updateUrl]);
+  }
+
 }
 
 

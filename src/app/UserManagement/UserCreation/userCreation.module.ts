@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UserCreateComponent } from './user-create/user-create/user-create.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { SharedModule } from '../../shared/shared.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { UserUpdateComponent } from './user-update/user-update.component';
 
 @NgModule({
   imports: [
@@ -14,16 +16,19 @@ import { SharedModule } from '../../shared/shared.module';
     RouterModule.forChild([
       { path: 'list', component: UserListComponent },
       { path: 'create', component: UserCreateComponent },
+      { path: 'update/:id', component: UserUpdateComponent }
     ]),
     NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
     BsDatepickerModule.forRoot(),
+    ModalModule.forRoot(),
     SharedModule
   ],
   declarations: [
     UserListComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    UserUpdateComponent
   ]
 })
 export class UserCreationModule { }

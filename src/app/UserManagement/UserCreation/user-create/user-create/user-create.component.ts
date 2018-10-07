@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { DropDownList } from 'src/app/_interfaces/dropdownlist.model';
 import { RepositoryService } from '../../../../shared/services/repository.service';
 import { ErrorHandlerService } from '../../../../shared/services/error-handler.service';
@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { UserDetail } from '../../../../_interfaces/UserManagement/VWUserDetail.modal'
 import { NgForm } from '@angular/forms';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
   selector: 'app-user-create',
@@ -17,6 +19,8 @@ export class UserCreateComponent implements OnInit {
   public lstAirline: any;
   public selectedAirline: any;
   datePickerConfig: Partial<BsDatepickerConfig>;
+  modalRef: BsModalRef;
+
   public userdetail: UserDetail = {
     userMstID: null,
     firstName: null,
@@ -77,33 +81,96 @@ export class UserCreateComponent implements OnInit {
 
   constructor(private repository: RepositoryService,
     private errorHandler: ErrorHandlerService,
-    private router: Router) {
-      this.datePickerConfig = Object.assign({},
-        {
-          dateInputFormat: 'DD/MM/YYYY'
-        });
-     }
+    private router: Router,
+    private modalService: BsModalService) {
+    this.datePickerConfig = Object.assign({},
+      {
+        dateInputFormat: 'DD/MM/YYYY'
+      });
+  }
 
   ngOnInit() {
     this.GetAirlineLst();
   }
 
-  GetAirlineLst() {
+  public GetAirlineLst() {
     this.repository.getData('api/Utility/GetAirlineList')
-          .subscribe(response => {
-            this.lstAirline = response;
-            this.lstAirline.splice(0, 0, {airlineCode: '0', airlineName: 'Select'});
+      .subscribe(response => {
+        this.lstAirline = response;
+        this.lstAirline.splice(0, 0, { airlineCode: '0', airlineName: 'Select' });
       }, err => {
         this.errorHandler.handleError(err);
         this.errorMessage = this.errorHandler.errorMessage;
       });
   }
 
-  CreateUser(form: NgForm) {
-    console.log('hi');
-      if (form.invalid) {
-          return;
-      }
-      console.log(form);
+  public CreateUser(form: NgForm, template: TemplateRef<any>) {
+    if (form.invalid) {
+      return;
     }
+
+    const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
+    const SelectedTerminal: number = form.value.P1;
+    let TerminalCode: string;
+    switch (SelectedTerminal) {
+      case 1:
+        TerminalCode = 'DEL';
+        break;
+      case 2:
+        TerminalCode = 'BLR';
+        break;
+      case 3:
+        TerminalCode = 'BOM';
+        break;
+    }
+    let user: UserDetail = {
+      userMstID: 0,
+      firstName: form.value.firstName,
+      middleName: form.value.middleName,
+      lastName: form.value.lastName,
+      dOB: form.value.DOB,
+      gender: form.value.gender == '1' ? 'M' : 'F',
+      contactNo: form.value.contactno,
+      email: form.value.EmailID,
+      fatherName: form.value.fatherName,
+      address1: form.value.Address1,
+      address2: form.value.address2,
+      address3: form.value.address3,
+      empCode: null,
+      p1: TerminalCode,
+      p2: null,
+      p3: null,
+      loginID: form.value.LoginID,
+      loginMId: 0,
+      password: null,
+      activeStatus: 'Y',
+      profileId: form.value.profileId,
+      contactPerson: null,
+      applicationName: null,
+      rPassword: null,
+      mCAddress: null,
+      lockStatus: 'A',
+      name: null,
+      mC_Status: 'A',
+      status: 'A',
+      createdBy: currentUser.UserInfo[0].userMstID,
+      createdOn: null,
+    };
+
+    let apiUrl = 'api/UserCreation';
+    this.repository.create(apiUrl, user)
+      .subscribe(res => {
+        this.modalRef = this.modalService.show(template);
+        this.redirectToUserList();
+      },
+        (error => {
+          this.errorHandler.handleError(error);
+          this.errorMessage = this.errorHandler.errorMessage;
+        })
+      );
+  }
+
+  public redirectToUserList() {
+    this.router.navigate(['/usercreation/list']);
+  }
 }
