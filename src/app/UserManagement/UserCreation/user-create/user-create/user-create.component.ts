@@ -4,7 +4,7 @@ import { RepositoryService } from '../../../../shared/services/repository.servic
 import { ErrorHandlerService } from '../../../../shared/services/error-handler.service';
 import { Router } from '@angular/router';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { UserDetail } from '../../../../_interfaces/UserManagement/VWUserDetail.modal'
+import { UserDetail } from '../../../../_interfaces/UserManagement/VWUserDetail.modal';
 import { NgForm } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
@@ -26,7 +26,7 @@ export class UserCreateComponent implements OnInit {
     firstName: null,
     middleName: null,
     lastName: null,
-    dOB: null,
+    dob: null,
     gender: 'Select',
     contactNo: '',
     email: '',
@@ -55,29 +55,22 @@ export class UserCreateComponent implements OnInit {
     createdOn: null,
   };
   mobnumPattern = '((\\+91-?)|0)?[0-9]{10}$';
-  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
 
   public genderLst: DropDownList[] = [
     new DropDownList(1, 'Male'),
     new DropDownList(2, 'Female')
   ];
 
-  public selectedGender: DropDownList = this.genderLst[0];
-
   public profilelst: DropDownList[] = [
     new DropDownList(1, 'UserProfile'),
     new DropDownList(2, 'Profile')
   ];
-
-  public selectedProfile: DropDownList = this.profilelst[0];
 
   public terminalst: DropDownList[] = [
     new DropDownList(1, 'Delhi'),
     new DropDownList(2, 'Banglore'),
     new DropDownList(3, 'Mumbai')
   ];
-
-  public selectedterminal: DropDownList = this.genderLst[0];
 
   constructor(private repository: RepositoryService,
     private errorHandler: ErrorHandlerService,
@@ -128,7 +121,7 @@ export class UserCreateComponent implements OnInit {
       firstName: form.value.firstName,
       middleName: form.value.middleName,
       lastName: form.value.lastName,
-      dOB: form.value.DOB,
+      dob: form.value.DOB,
       gender: form.value.gender == '1' ? 'M' : 'F',
       contactNo: form.value.contactno,
       email: form.value.EmailID,
@@ -171,6 +164,6 @@ export class UserCreateComponent implements OnInit {
   }
 
   public redirectToUserList() {
-    this.router.navigate(['/usercreation/list']);
+    this.router.navigate(['/home/usercreation/list']);
   }
 }

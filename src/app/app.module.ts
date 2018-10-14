@@ -57,6 +57,7 @@ import { RepositoryService } from './shared/services/repository.service';
 import { EnvironmentUrlService } from './shared/services/environment-url.service';
 import { JwtInterceptor } from './_helper/jwt.interceptor';
 import { ErrorInterceptor } from './_helper/error.interceptor';
+import { DatePipe } from '@angular/common';
 
   @NgModule({
     exports: [
@@ -116,6 +117,10 @@ const appRoutes: Routes = [
       {
         path: 'usercreation',
         loadChildren: './UserManagement/UserCreation/userCreation.module#UserCreationModule'
+      },
+      {
+        path: 'rolecreation',
+        loadChildren: './UserManagement/RoleCreation/roleCreation.module#RoleCreationModule'
       }
     ]
   },
@@ -148,7 +153,8 @@ const appRoutes: Routes = [
     RepositoryService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    ErrorHandlerService
+    ErrorHandlerService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

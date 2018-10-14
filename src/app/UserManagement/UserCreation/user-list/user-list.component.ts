@@ -59,7 +59,7 @@ constructor(private repository: RepositoryService,
   }
 
   public redirectToUpdatePage(id) {
-    let updateUrl = `/usercreation/update/${id}`;
+    const updateUrl = `/home/usercreation/update/${id}`;
     this.router.navigate([updateUrl]);
   }
 

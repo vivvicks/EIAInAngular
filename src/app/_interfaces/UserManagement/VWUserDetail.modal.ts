@@ -3,7 +3,7 @@ export interface UserDetail {
     firstName: string;
     middleName: string;
     lastName: string;
-    dOB: string;
+    dob: string;
     gender: string;
     contactNo: string;
     email: string;

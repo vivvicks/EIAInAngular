@@ -29,7 +29,7 @@
                 <tbody>
                     <tr *ngFor="let item of vwUserDetail | paginate: { itemsPerPage: perpage, currentPage: p }">
                         <td><input type="checkbox" /></td>
-                        <td><a href="#" (click)="redirectToUpdatePage(item.UserMstID)">{{item.loginID}}</a></td>
+                        <td><a (click)="redirectToUpdatePage(item.userMstID)">{{item.loginID}}</a></td>
                         <td>{{item.firstName}} {{item.lastName}}</td>
                         <td>{{item.email}}</td>
                         <td>{{item.lockStatus}}</td>
