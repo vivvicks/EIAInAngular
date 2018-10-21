@@ -1,15 +1,35 @@
+import { NgForm, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+
+
 export class VsecRoleMst {
-    RoleId: number;
-    ParentRoleId: number | null;
+    roleId: number;
+    parentRoleId: number | null;
+    roleSname: string;
+    displayName: string;
+    activeFlag: string;
+    status: string;
+    mcStatus: string;
+    createdBy: string;
+    createdOn: Date | string;
+    updatedBy: string;
+    updatedOn: Date | string | null;
+    lastUpDtBy: string;
+    lastUpDtOn: Date | string | null;
+}
+
+export class CreateRole {
     RoleSname: string;
     DisplayName: string;
-    ActiveFlag: string;
-    Status: string;
-    McStatus: string;
-    CreatedBy: string;
-    CreatedOn: Date | string;
-    UpdatedBy: string;
-    UpdatedOn: Date | string | null;
-    LastUpDtBy: string;
-    LastUpDtOn: Date | string | null;
+    formRoleGroup: FormGroup = null;
+
+    constructor() {
+        var _builder = new FormBuilder();
+        this.formRoleGroup = _builder.group({});
+        this.formRoleGroup.addControl('RoleSName',  new FormControl('', Validators.required));
+
+        var validationcollection = [];
+        validationcollection.push(Validators.required);
+
+        this.formRoleGroup.addControl('DisplayName',  new FormControl('', Validators.compose(validationcollection)));
+    }
 }

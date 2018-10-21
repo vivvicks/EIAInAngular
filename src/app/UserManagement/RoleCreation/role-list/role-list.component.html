@@ -12,13 +12,28 @@
     <div class="col-xs-12 col-sm-12">
       <div class="row">
         <div class="col-xs-3 col-sm-3">
-          View <select (change)="selectChangeHandler($event.target.value)" (ngModel)="itemsPerPage.id">
-            <option *ngFor="let item of itemsPerPages" value={{item.id}}>
-              {{item.name}}
-            </option>
-          </select> records at a time.
+          <a [routerLink]="['/home/rolecreation/create']">Add Role</a>
+        </div>
+        <div class="col-xs-3 col-sm-3">
+        </div>
+        <div class="col-xs-3 col-sm-3">
+        </div>
+        <div class="col-xs-3 col-sm-3">
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12" style="height:10px">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      View <select (change)="selectChangeHandler($event.target.value)" (ngModel)="itemsPerPage.id">
+        <option *ngFor="let item of itemsPerPages" value={{item.id}}>
+            {{item.name}}
+        </option>
+    </select> records at a time.
     </div>
   </div>
   <div class="row">
@@ -39,7 +54,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of vsecRoleMst | paginate: { itemsPerPage: perpage, currentPage: p }">
-              <td><a href="#">Edit</a></td>
+              <td><a (click)="redirectToUpdatePage(item.roleId)">Edit</a></td>
               <td>{{item.roleSname}}</td>
               <td>{{item.displayName}}</td>
               <td>{{item.status}}</td>

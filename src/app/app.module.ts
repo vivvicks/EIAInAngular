@@ -122,6 +122,11 @@ const appRoutes: Routes = [
         path: 'rolecreation',
         loadChildren: './UserManagement/RoleCreation/roleCreation.module#RoleCreationModule'
       }
+      ,
+      {
+        path: 'userrolemap',
+        loadChildren: './UserManagement/RoleCreation/UserRoleMap.module#UserRoleMapModule'
+      }
     ]
   },
 ];

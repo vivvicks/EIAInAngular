@@ -58,4 +58,8 @@ export class RoleListComponent implements OnInit {
       });
   }
 
+  public redirectToUpdatePage(id) {
+    const updateUrl = `/home/rolecreation/update/${id}`;
+    this.router.navigate([updateUrl]);
+  }
 }
