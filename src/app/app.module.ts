@@ -125,7 +125,7 @@ const appRoutes: Routes = [
       ,
       {
         path: 'userrolemap',
-        loadChildren: './UserManagement/RoleCreation/UserRoleMap.module#UserRoleMapModule'
+        loadChildren: './UserManagement/UserRoleMap/UserRoleMap.module#UserRoleMapModule'
       }
     ]
   },
