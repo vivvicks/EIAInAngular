@@ -34,7 +34,7 @@ export class RoleCreateComponent implements OnInit {
   public createRole(RoleFormValue, template: TemplateRef<any>) {
     const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
     let todaysDate = new Date();
-    console.log(this.datepipe.transform(todaysDate, 'yyyy-MM-dd HH:mm:ss'));
+
     let Role : VsecRoleMst = {
       roleId: 0,
       parentRoleId: null,

@@ -169,7 +169,7 @@ export class UserUpdateComponent implements OnInit {
       name: null,
       mC_Status: 'A',
       status: 'A',
-      createdBy: currentUser.UserInfo[0].userMstID,
+      createdBy: currentUser.UserInfo[0].loginID,
       createdOn: null,
     };
 
