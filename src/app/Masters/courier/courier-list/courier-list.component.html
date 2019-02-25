@@ -1,0 +1,176 @@
+<form [formGroup]="formCourierGroup" autocomplete="off" novalidate (ngSubmit)="SearchCourier(formCourierGroup.value)">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+        <h3>Couriers Details</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+        <div class="row">
+          <div class="col-xs-3 col-sm-3">
+            Courier Company Name
+          </div>
+          <div class="col-xs-3 col-sm-3">
+            <input id="Couriercompanyname" formControlName="CouriercompanynameControl" class="form-control" type="text" />
+          </div>
+          <div class="col-xs-3 col-sm-3">
+            Courier Company Code
+          </div>
+          <div class="col-xs-3 col-sm-3">
+            <input id="Couriercompanycode" formControlName="CouriercompanycodeControl" class="form-control" type="text" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12" style="height:10px">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+        <div class="row">
+          <div class="col-xs-3 col-sm-3">
+            Member Type
+          </div>
+          <div class="col-xs-3 col-sm-3">
+            <select class="form-control" formControlName="MemberTypeControl" name="MemberType" id="MemberTypeid">
+              <option value="" selected>Please select</option>
+              <option *ngFor="let Type of MemberType" [value]="Type.MasterId">
+                {{Type.MasterDesc}}
+              </option>
+            </select>
+          </div>
+          <div class="col-xs-3 col-sm-3">
+            Courier Type
+          </div>
+          <div class="col-xs-3 col-sm-3">
+            <select class="form-control" formControlName="CouriertypeControl" name="Couriertype" id="Couriertypeid">
+              <option value="" selected>Please select</option>
+              <option *ngFor="let Type of CourierType" [value]="Type.MasterId">
+                {{Type.MasterDesc}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12" style="height:10px">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+        <div class="row">
+          <div class="col-xs-3 col-sm-3">
+            <a href="">Add Record</a>
+          </div>
+          <div class="col-xs-3 col-sm-3">
+          </div>
+          <div class="col-xs-3 col-sm-3">
+          </div>
+          <div class="col-xs-3 col-sm-3">
+            <input type="submit" class="btn btn-success" value="Search" />
+            <input type="button" class="btn btn-success" value="Clear" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12" style="height:10px">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+        <div class="row">
+          <div class="col-xs-3 col-sm-3">
+            View <select>
+              <option>5</option>
+              <option>10</option>
+              <option>20</option>
+              <option>30</option>
+              <option>40</option>
+              <option>50</option>
+            </select> records at a time.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12" style="height:10px">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+        <div class="container">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th></th>
+                <th>Courier Company Registration Number</th>
+                <th>Courier Company Code</th>
+                <th>Courier Company Name</th>
+                <th>Courier Company Tally Name</th>
+                <th>Contact Person</th>
+                <th>Courier Email Id</th>
+                <th>Courier Contact No</th>
+                <th>Courier Company Addr1</th>
+                <th>Courier Company Addr2</th>
+                <th>Courier Company State</th>
+                <th>Courier Company City</th>
+                <th>Courier Company PinCode</th>
+                <th>Member Type</th>
+                <th>Courier Type</th>
+                <th>Termincal Code</th>
+                <th>Courier Company Registration Expiry Dt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="#/EditCourier">Edit</a></td>
+                <td><input type="checkbox" /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12" style="height:10px">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+        <div class="row">
+          <div class="col-xs-3 col-sm-3">
+            <input type="button" class="btn btn-success" value="Remove" />
+          </div>
+          <div class="col-xs-3 col-sm-3">
+          </div>
+          <div class="col-xs-3 col-sm-3">
+          </div>
+          <div class="col-xs-3 col-sm-3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -24,6 +24,7 @@ export class UserrolemapListComponent implements OnInit {
   selectedOption: VsecRoleMst;
   formUserRoleMapGroup: FormGroup = null;
   public selectedStatus = '';
+  p: number = 1;
   itemsPerPage: DropDownList = new DropDownList(1, '5');
   perpage: number = +this.itemsPerPage.name;
   AllocateFlag = false;

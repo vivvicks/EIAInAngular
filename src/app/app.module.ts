@@ -7,7 +7,7 @@ import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {RouterModule, Routes } from '@angular/router';
-import { JwtHelper } from 'angular2-jwt';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { MenuItemComponent } from './Menu/menu-item/menu-item.component';
@@ -55,9 +55,12 @@ import { FooterComponent } from './login/footer/footer.component';
 import { HomeComponent } from './Home/home/home.component';
 import { RepositoryService } from './shared/services/repository.service';
 import { EnvironmentUrlService } from './shared/services/environment-url.service';
-import { JwtInterceptor } from './_helper/jwt.interceptor';
 import { ErrorInterceptor } from './_helper/error.interceptor';
 import { DatePipe } from '@angular/common';
+
+  export function tokenGetter() {
+        return localStorage.getItem('jwt');
+  }
 
   @NgModule({
     exports: [
@@ -129,6 +132,28 @@ const appRoutes: Routes = [
       }
     ]
   },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children : [
+      {
+        path: 'courierDetail',
+        loadChildren: './Masters/courier/CourierMaster.module#CourierMasterModule'
+      }
+    ]
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children : [
+      {
+        path: 'Import',
+        loadChildren: './Import/PreStage/PreStage.module#PreStageModule'
+      }
+    ]
+  },
 ];
 
 @NgModule({
@@ -149,14 +174,20 @@ const appRoutes: Routes = [
     MaterialModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:5000'],
+        blacklistedRoutes: [],
+        skipWhenExpired: true
+      }
+    })
   ],
   providers: [
-    JwtHelper,
     AuthGuard,
     EnvironmentUrlService,
     RepositoryService,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     ErrorHandlerService,
     DatePipe

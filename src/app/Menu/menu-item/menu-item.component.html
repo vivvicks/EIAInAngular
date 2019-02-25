@@ -3,8 +3,19 @@
 
   <mat-menu #Home="matMenu">
     <button mat-menu-item [matMenuTriggerFor]="userManagement">User Management</button>
-    <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
-    <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+    <button mat-menu-item [matMenuTriggerFor]="Masters">Masters</button>
+    <button mat-menu-item [matMenuTriggerFor]="Imports">Imports</button>
+  </mat-menu>
+
+  <mat-menu #Imports="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="preStage">Pre Stage</button>
+  </mat-menu>
+
+  <mat-menu #preStage="matMenu">
+    <button mat-menu-item [routerLink]="['/home/Import/FormI']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">FormI</button>
+    <button mat-menu-item>Amend Form I</button>
+    <button mat-menu-item>ECCS Summery Import</button>
+    <button mat-menu-item>Ammend ECCS Summery Import</button>
   </mat-menu>
 
   <mat-menu #userManagement="matMenu">
@@ -15,8 +26,8 @@
       <button mat-menu-item>Profile Creation</button>      
   </mat-menu>
 
-  <mat-menu #vertebrates="matMenu">
-    <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+  <mat-menu #Masters="matMenu">
+    <button mat-menu-item [routerLink]="['/home/courierDetail/list']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Courier details</button>
     <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
     <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
     <button mat-menu-item>Birds</button>

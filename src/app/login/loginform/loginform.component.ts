@@ -30,7 +30,7 @@ export class LoginformComponent implements OnInit {
   }
 
   public validateControl(controlName: string) {
-    if (this.loginForm.controls[controlName].invalid && this.loginForm.controls[controlName].touched){
+    if (this.loginForm.controls[controlName].invalid && this.loginForm.controls[controlName].touched) {
       return true;
     }
 
@@ -38,7 +38,7 @@ export class LoginformComponent implements OnInit {
   }
 
   public hasError(controlName: string, errorName: string) {
-    if (this.loginForm.controls[controlName].hasError(errorName)){
+    if (this.loginForm.controls[controlName].hasError(errorName)) {
       return true;
     }
 

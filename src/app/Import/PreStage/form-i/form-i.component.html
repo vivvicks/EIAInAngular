@@ -1,0 +1,370 @@
+<form novalidate name="formImport">
+  <script type="text/ng-template" id="IGMDetails.html">
+      <div class="modal-header">
+          <h3 class="modal-title" id="modal-title">IGM Details</h3>
+      </div>
+      <div class="modal-body" id="modal-body">
+          <div class="row">
+              <div class="col-xs-12 col-sm-12">
+                  <div class="row">
+                      <div class="col-xs-3 col-sm-3">
+                          Flight Number
+                      </div>
+                      <div class="col-xs-3 col-sm-3">
+                      </div>
+                      <div class="col-xs-3 col-sm-3">
+                          Flight Date
+                      </div>
+                      <div class="col-xs-3 col-sm-3">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-xs-12 col-sm-12">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-xs-12 col-sm-12">
+                  <div class="row">
+                      <div class="col-xs-3 col-sm-3">
+                          Time of Arrival
+                      </div>
+                      <div class="col-xs-3 col-sm-3">
+                      </div>
+                      <div class="col-xs-3 col-sm-3">
+                          IGM Number
+                      </div>
+                      <div class="col-xs-3 col-sm-3">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-xs-12 col-sm-12">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-xs-12 col-sm-12">
+                  <div class="row">
+                      <div class="col-xs-3 col-sm-3">
+                          IGM Date
+                      </div>
+                      <div class="col-xs-3 col-sm-3">
+                      </div>
+                      <div class="col-xs-3 col-sm-3">
+                      </div>
+                      <div class="col-xs-3 col-sm-3">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-xs-12 col-sm-12">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-xs-12 col-sm-12">
+                  <div class="row">
+                      <div class="col-xs-12 col-sm-12">
+                          <table class="table table-striped">
+                              <thead>
+                                  <tr>
+                                      <th>Form1 MAWB Number</th>
+                                      <th>Form2 MAWB Number</th>
+                                      <th>Express Company Name</th>
+                                      <th>Form I No. of Bags</th>
+                                      <th>Form I No. of Pkgs/Bags</th>
+                                      <th>Form I No. of Shps</th>
+                                      <th>Form I No. of Weight</th>
+                                      <th>Form I Actual No. of Pkgs/Bags</th>
+                                      <th>Form I Actual No. of Weight</th>
+                                      <th>Form II No. of Bags</th>
+                                      <th>Form II No. of Shps</th>
+                                      <th>Form II No. of Pkgs</th>
+                                      <th>Form II No. of Weight</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-warning" >Cancel</button>
+      </div>
+  </script>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+        <h3>Import -> Enter Form I</h3>
+      </div>
+    </div>
+    <div class="panel panel-success">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <div class="row">
+              <div class="col-xs-3 col-sm-3">
+                Flight Number
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input id="txtFlightNumber" class="form-control" type="text" />
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                Airline Name
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input id="txtAirlines" class="form-control" type="text" readonly />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12" style="height:10px">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <div class="row">
+              <div class="col-xs-3 col-sm-3">
+                Airport Of Arrival [Dest.]
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input id="txtAirportOfArrival" class="form-control" type="text" readonly />
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                Airport Of Departure [Origin]
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input id="txtAirportOfShipment" class="form-control" type="text" readonly />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12" style="height:10px">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <div class="row">
+              <div class="col-xs-3 col-sm-3">
+                Date Of Arrival
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input mydatepicker id="txtDateOfArrival" class="form-control" type="text" />
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                Time Of Arrival [Load] (24:00)
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input id="txtTimeOfArrival" type="text" style="width:50px" required /> : <input id="txtTimeOfArrival1"
+                  type="text" style="width:50px" required />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12" style="height:10px">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <div class="row">
+              <div class="col-xs-3 col-sm-3">
+                IGM Number
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input id="txtIGMNo" name="IGMNo" type="text" class="form-control" />
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                IGM Date
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input mydatepicker id="txtIgmDate" type="text" class="form-control" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12" style="height:10px">
+      </div>
+    </div>
+    <div class="panel panel-success">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <div class="row">
+              <div class="col-xs-3 col-sm-3">
+                MAWB Number
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input id="txtMAWBNo" name="MAWBNo" type="text" class="form-control" required />
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                Express Company Name
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input id="txtCourierCompanyName" type="text" class="form-control" required />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12" style="height:10px">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <div class="row">
+              <div class="col-xs-3 col-sm-3">
+                Manifest Number Of Packages/Bags
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input id="txtNumberOfPackages" type="text" class="form-control" required />
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                Manifest Weight [in kg]
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input id="txtweight" type="text" class="form-control" required />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12" style="height:10px">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <div class="row">
+              <div class="col-xs-3 col-sm-3">
+                Actual Number Of Packages/Bags
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input id="txtActualNumber" type="text" class="form-control" required />
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                Actual Weight [in kg]
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input id="txtActualWeight" type="text" class="form-control" required />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12" style="height:10px">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <div class="row">
+              <div class="col-xs-3 col-sm-3">
+                ULD Number
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input id="txtULDNumber" type="text" class="form-control" required />
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                Co Loader
+              </div>
+              <div class="col-xs-3 col-sm-3">
+                <input id="txtCoLoader" type="text" class="form-control" required />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12" style="height:10px">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12" style="height: 10px; align-items: center">
+        <div class="row">
+          <div class="col-xs-3 col-sm-4">
+            <span>
+              <a>Check IGM Status</a>
+            </span>
+            <input type="submit" class="btn btn-success" value="add" />
+            <input type="submit" class="btn btn-success" value=" modify" />
+            <input type="submit" class="btn btn-success" value=" delete" />
+          </div>
+          <div class="col-xs-3 col-sm-4">
+          </div>
+          <div class="col-xs-3 col-sm-4">
+            <input type="submit" class="btn btn-success" value="Add" />
+            <input type="submit" class="btn btn-success" value="Save" />
+            <input type="submit" class="btn btn-success" value="Clear" />
+            <input type="submit" class="btn btn-success" value="Close" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12" style="height:20px">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12" style="height:10px">
+        <div class="container">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Select</th>
+                <th>SR.Number</th>
+                <th>MAWB Number</th>
+                <th>Express Company Name</th>
+                <th>Manifest Number Of Packages</th>
+                <th>Manifest Weight</th>
+                <th>Actual Number Of Packages</th>
+                <th>Actual Weight</th>
+                <th>Coloader</th>
+                <th>ULD Number</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -16,7 +16,7 @@
             <label for="customSelectedControl">Role Name</label>
           </div>
           <div class="col-xs-3 col-sm-3">
-            <input required formControlName="customSelectedControl" [(ngModel)]="customSelected" [typeahead]="vsecRoleMst"
+            <input required formControlName="customSelectedControl" [typeahead]="vsecRoleMst"
               typeaheadOptionField="displayName" class="form-control" [typeaheadScrollable]="true"
               [typeaheadOptionsInScrollableView]="5" (typeaheadOnSelect)="onSelect($event)" placeholder="Select RoleName">
 
