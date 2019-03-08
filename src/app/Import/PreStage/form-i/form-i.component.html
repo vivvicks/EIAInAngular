@@ -1,4 +1,4 @@
-<form novalidate name="formImport">
+<form [formGroup]="form1Group" autocomplete="off" novalidate name="formImport">
   <script type="text/ng-template" id="IGMDetails.html">
       <div class="modal-header">
           <h3 class="modal-title" id="modal-title">IGM Details</h3>
@@ -127,7 +127,9 @@
                 Flight Number
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input id="txtFlightNumber" class="form-control" type="text" />
+                <input required formControlName="flightNumberControl" [typeahead]="MFlightmasterMst"
+                typeaheadOptionField="flightNumber" class="form-control" [typeaheadScrollable]="true"
+                [typeaheadOptionsInScrollableView]="5" (typeaheadOnSelect)="onSelect($event)" placeholder="Select flight number" />
               </div>
               <div class="col-xs-3 col-sm-3">
                 Airline Name

@@ -7,6 +7,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { SharedModule } from '../../shared/shared.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormIComponent } from './form-i/form-i.component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import { FormIComponent } from './form-i/form-i.component';
       ReactiveFormsModule,
       BsDatepickerModule.forRoot(),
       ModalModule.forRoot(),
-      SharedModule
+      SharedModule,
+      TypeaheadModule.forRoot(),
     ],
     declarations: [
         FormIComponent
