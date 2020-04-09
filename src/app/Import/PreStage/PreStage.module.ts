@@ -21,7 +21,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
       BsDatepickerModule.forRoot(),
       ModalModule.forRoot(),
       SharedModule,
-      TypeaheadModule.forRoot(),
+      TypeaheadModule.forRoot()
     ],
     declarations: [
         FormIComponent

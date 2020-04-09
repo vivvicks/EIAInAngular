@@ -27,6 +27,7 @@ export class MenuItemComponent implements OnInit {
   GetFinYear() {
     this.repository.getData('api/Utility/GetFinantialYear')
           .subscribe(response => {
+            console.log(response);
             this.lstFinYear = response;
       }, err => {
         this.errorHandler.handleError(err);

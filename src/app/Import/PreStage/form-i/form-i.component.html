@@ -1,117 +1,4 @@
 <form [formGroup]="form1Group" autocomplete="off" novalidate name="formImport">
-  <script type="text/ng-template" id="IGMDetails.html">
-      <div class="modal-header">
-          <h3 class="modal-title" id="modal-title">IGM Details</h3>
-      </div>
-      <div class="modal-body" id="modal-body">
-          <div class="row">
-              <div class="col-xs-12 col-sm-12">
-                  <div class="row">
-                      <div class="col-xs-3 col-sm-3">
-                          Flight Number
-                      </div>
-                      <div class="col-xs-3 col-sm-3">
-                      </div>
-                      <div class="col-xs-3 col-sm-3">
-                          Flight Date
-                      </div>
-                      <div class="col-xs-3 col-sm-3">
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-12 col-sm-12">
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-12 col-sm-12">
-                  <div class="row">
-                      <div class="col-xs-3 col-sm-3">
-                          Time of Arrival
-                      </div>
-                      <div class="col-xs-3 col-sm-3">
-                      </div>
-                      <div class="col-xs-3 col-sm-3">
-                          IGM Number
-                      </div>
-                      <div class="col-xs-3 col-sm-3">
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-12 col-sm-12">
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-12 col-sm-12">
-                  <div class="row">
-                      <div class="col-xs-3 col-sm-3">
-                          IGM Date
-                      </div>
-                      <div class="col-xs-3 col-sm-3">
-                      </div>
-                      <div class="col-xs-3 col-sm-3">
-                      </div>
-                      <div class="col-xs-3 col-sm-3">
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-12 col-sm-12">
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-xs-12 col-sm-12">
-                  <div class="row">
-                      <div class="col-xs-12 col-sm-12">
-                          <table class="table table-striped">
-                              <thead>
-                                  <tr>
-                                      <th>Form1 MAWB Number</th>
-                                      <th>Form2 MAWB Number</th>
-                                      <th>Express Company Name</th>
-                                      <th>Form I No. of Bags</th>
-                                      <th>Form I No. of Pkgs/Bags</th>
-                                      <th>Form I No. of Shps</th>
-                                      <th>Form I No. of Weight</th>
-                                      <th>Form I Actual No. of Pkgs/Bags</th>
-                                      <th>Form I Actual No. of Weight</th>
-                                      <th>Form II No. of Bags</th>
-                                      <th>Form II No. of Shps</th>
-                                      <th>Form II No. of Pkgs</th>
-                                      <th>Form II No. of Weight</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  <tr>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="modal-footer">
-          <button class="btn btn-warning" >Cancel</button>
-      </div>
-  </script>
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-12">
@@ -129,13 +16,17 @@
               <div class="col-xs-3 col-sm-3">
                 <input required formControlName="flightNumberControl" [typeahead]="MFlightmasterMst"
                 typeaheadOptionField="flightNumber" class="form-control" [typeaheadScrollable]="true"
-                [typeaheadOptionsInScrollableView]="5" (typeaheadOnSelect)="onSelect($event)" placeholder="Select flight number" />
+                [typeaheadOptionsInScrollableView]="5" (typeaheadOnSelect)="onSelect($event)" placeholder="Select flight number" 
+                [ngClass]="{ 'is-invalid': submitted && f.flightNumberControl.errors }"/>
+                  <div *ngIf="submitted && f.flightNumberControl.errors" class="invalid-feedback">
+                   <div *ngIf="f.flightNumberControl.errors.required">Please select flight Number</div>
+                  </div>
               </div>
               <div class="col-xs-3 col-sm-3">
                 Airline Name
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input id="txtAirlines" class="form-control" type="text" readonly />
+                <input id="txtAirlines" formControlName="airlineName" class="form-control" type="text" readonly />
               </div>
             </div>
           </div>
@@ -151,13 +42,13 @@
                 Airport Of Arrival [Dest.]
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input id="txtAirportOfArrival" class="form-control" type="text" readonly />
+                <input id="txtAirportOfArrival" formControlName="AirportOfArrival" class="form-control" type="text" readonly />
               </div>
               <div class="col-xs-3 col-sm-3">
                 Airport Of Departure [Origin]
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input id="txtAirportOfShipment" class="form-control" type="text" readonly />
+                <input id="txtAirportOfShipment" formControlName="AirportOfShipment" class="form-control" type="text" readonly />
               </div>
             </div>
           </div>
@@ -173,14 +64,25 @@
                 Date Of Arrival
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input mydatepicker id="txtDateOfArrival" class="form-control" type="text" />
+                <input bsDatepicker formControlName="DateOfArrivalControl" [bsConfig]="datePickerConfig" id="txtDateOfArrival" 
+                       class="form-control" type="text" [bsValue]="dateOfArrival" 
+                       [ngClass]="{ 'is-invalid': submitted && f.DateOfArrivalControl.errors }"/>
+                  <div *ngIf="submitted && f.DateOfArrivalControl.errors" class="invalid-feedback">
+                   <div *ngIf="f.DateOfArrivalControl.errors.required">Date Of Arrival is required</div>
+                  </div>
               </div>
               <div class="col-xs-3 col-sm-3">
                 Time Of Arrival [Load] (24:00)
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input id="txtTimeOfArrival" type="text" style="width:50px" required /> : <input id="txtTimeOfArrival1"
-                  type="text" style="width:50px" required />
+                <input id="txtTimeOfArrival" type="text" style="width:50px" formControlName="hrs" [ngClass]="{ 'is-invalid': submitted && f.hrs.errors }"/> : <input id="txtTimeOfArrival1"
+                  type="text" style="width:50px" formControlName="min" [ngClass]="{ 'is-invalid': submitted && f.min.errors }"/>
+                  <div *ngIf="submitted && f.hrs.errors" class="invalid-feedback">
+                    <div *ngIf="f.hrs.errors.required">Flight hrs is required</div>
+                   </div>
+                   <div *ngIf="submitted && f.min.errors" class="invalid-feedback">
+                    <div *ngIf="f.min.errors.required">Flight min is required</div>
+                   </div>
               </div>
             </div>
           </div>
@@ -196,14 +98,22 @@
                 IGM Number
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input id="txtIGMNo" name="IGMNo" type="text" class="form-control" />
+                <input id="txtIGMNo" formControlName="IGMNoControl" name="IGMNo" type="text" class="form-control" 
+                      [ngClass]="{ 'is-invalid': submitted && f.IGMNoControl.errors && f.MAWBNoControl.errors}"/>
+                  <div *ngIf="submitted && f.IGMNoControl.errors && f.MAWBNoControl.errors" class="invalid-feedback">
+                    <div *ngIf="f.IGMNoControl.errors.required && f.MAWBNoControl.errors">IGM number is required</div>
+                </div>
               </div>
               <div class="col-xs-3 col-sm-3">
                 IGM Date
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input mydatepicker id="txtIgmDate" type="text" class="form-control" />
-              </div>
+                <input bsDatepicker formControlName="IgmDateControl" [bsConfig]="datePickerConfig" id="txtIgmDate" type="text" class="form-control" [bsValue]="igmDate" 
+                      [ngClass]="{ 'is-invalid': submitted && f.IgmDateControl.errors }"/>
+                      <div *ngIf="submitted && f.IgmDateControl.errors" class="invalid-feedback">
+                        <div *ngIf="f.IgmDateControl.errors.required">Igm Date is required</div>
+                       </div>
+              </div>     
             </div>
           </div>
         </div>
@@ -222,13 +132,23 @@
                 MAWB Number
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input id="txtMAWBNo" name="MAWBNo" type="text" class="form-control" required />
+                <input id="txtMAWBNo" formControlName="MAWBNoControl" name="MAWBNo" type="text" class="form-control" 
+                [ngClass]="{ 'is-invalid': submitted && f.MAWBNoControl.errors && f.IGMNoControl.errors }"/>
+                <div *ngIf="submitted && f.MAWBNoControl.errors && f.IGMNoControl.errors" class="invalid-feedback">
+                  <div *ngIf="f.MAWBNoControl.errors.required && f.IGMNoControl.errors">MAWB number is required</div>
+                </div>
               </div>
               <div class="col-xs-3 col-sm-3">
                 Express Company Name
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input id="txtCourierCompanyName" type="text" class="form-control" required />
+                <input required formControlName="courierNameControl" [typeahead]="MCourierMst"
+                typeaheadOptionField="courierCoName" class="form-control" [typeaheadScrollable]="true"
+                [typeaheadOptionsInScrollableView]="5" (typeaheadOnSelect)="onCourierSelect($event)" placeholder="Select courier company" 
+                [ngClass]="{ 'is-invalid': submitted && f.courierNameControl.errors }"/>
+                <div *ngIf="submitted && f.courierNameControl.errors" class="invalid-feedback">
+                  <div *ngIf="f.courierNameControl.errors.required">please select courier company name</div>
+                </div>
               </div>
             </div>
           </div>
@@ -244,13 +164,21 @@
                 Manifest Number Of Packages/Bags
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input id="txtNumberOfPackages" type="text" class="form-control" required />
+                <input id="txtNumberOfPackages" formControlName="NumberOfPackagesControl" type="text" class="form-control" 
+                      [ngClass]="{ 'is-invalid': submitted && f.NumberOfPackagesControl.errors }" />
+                <div *ngIf="submitted && f.NumberOfPackagesControl.errors" class="invalid-feedback">
+                  <div *ngIf="f.NumberOfPackagesControl.errors.required">Manifest Number Of Packages/Bags is required</div>
+                </div>
               </div>
               <div class="col-xs-3 col-sm-3">
                 Manifest Weight [in kg]
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input id="txtweight" type="text" class="form-control" required />
+                <input id="txtweight" formControlName="weightControl" type="text" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.weightControl.errors }" />
+                <div *ngIf="submitted && f.weightControl.errors" class="invalid-feedback">
+                  <div *ngIf="f.weightControl.errors.required">Manifest Weight is required</div>
+                </div>
               </div>
             </div>
           </div>
@@ -266,13 +194,13 @@
                 Actual Number Of Packages/Bags
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input id="txtActualNumber" type="text" class="form-control" required />
+                <input id="txtActualNumber" formControlName="ActualNumberControl" type="text" class="form-control" />
               </div>
               <div class="col-xs-3 col-sm-3">
                 Actual Weight [in kg]
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input id="txtActualWeight" type="text" class="form-control" required />
+                <input id="txtActualWeight" formControlName="ActualWeightControl" type="text" class="form-control" />
               </div>
             </div>
           </div>
@@ -288,13 +216,17 @@
                 ULD Number
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input id="txtULDNumber" type="text" class="form-control" required />
+                <input id="txtULDNumber" formControlName="ULDNumberControl" type="text" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.ULDNumberControl.errors }"/>
+                <div *ngIf="submitted && f.ULDNumberControl.errors" class="invalid-feedback">
+                  <div *ngIf="f.ULDNumberControl.errors.required">ULD number is required</div>
+                </div>
               </div>
               <div class="col-xs-3 col-sm-3">
                 Co Loader
               </div>
               <div class="col-xs-3 col-sm-3">
-                <input id="txtCoLoader" type="text" class="form-control" required />
+                <input id="txtCoLoader" formControlName="CoLoaderControl" type="text" class="form-control" />
               </div>
             </div>
           </div>
@@ -307,15 +239,14 @@
     </div>
     <div class="row">
       <div class="col-xs-12 col-sm-12" style="height: 10px; align-items: center">
+        <!--<input type="submit" class="btn btn-success" (click)="openModal(IGMDetails)" value="Check IGM Status">-->
+        <a href="#" (click)="!!openModal(IGMDetails)">Check IGM Status</a>
         <div class="row">
-          <div class="col-xs-3 col-sm-4">
-            <span>
-              <a>Check IGM Status</a>
-            </span>
-            <input type="submit" class="btn btn-success" value="add" />
-            <input type="submit" class="btn btn-success" value=" modify" />
-            <input type="submit" class="btn btn-success" value=" delete" />
-          </div>
+          <!--<div class="col-xs-3 col-sm-4">-->
+            <button class="btn btn-primary mr-1" (click)="Add()">Add</button>
+            <button class="btn btn-primary mr-1" (click)="modify()">modify</button>
+            <button class="btn btn-primary mr-1" (click)="delete()">delete</button>
+          <!--</div>-->
           <div class="col-xs-3 col-sm-4">
           </div>
           <div class="col-xs-3 col-sm-4">
@@ -369,4 +300,122 @@
       </div>
     </div>
   </div>
+  <ng-template #IGMDetails>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">IGM Details</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="table-responsive" style="width: 100%;" id="modal-body">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3">
+                        Flight Number
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                      <label>{{ IGMFlightNumber }}</label>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        Flight Date
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                      <label>{{ IGMFlightDate }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3">
+                        Time of Arrival
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                      <label>{{ IGMTOA }}</label>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        IGM Number
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                      <label>{{ IGMNumber }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3">
+                        IGM Date
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                      <label>{{ IGMDate }}</label>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Form1 MAWB Number</th>
+                                    <th>Form2 MAWB Number</th>
+                                    <th>Express Company Name</th>
+                                    <th>Form I No. of Bags</th>
+                                    <th>Form I No. of Pkgs/Bags</th>
+                                    <th>Form I No. of Shps</th>
+                                    <th>Form I No. of Weight</th>
+                                    <th>Form I Actual No. of Pkgs/Bags</th>
+                                    <th>Form I Actual No. of Weight</th>
+                                    <th>Form II No. of Bags</th>
+                                    <th>Form II No. of Shps</th>
+                                    <th>Form II No. of Pkgs</th>
+                                    <th>Form II No. of Weight</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of GetForm1CheckStatus">
+                                    <td>{{ item.formIMAWBNo }}</td>
+                                    <td>{{ item.formIIMAWBNo }}</td>
+                                    <td>{{ item.courierCompanyName }}</td>
+                                    <td>{{ item.form1NoofBags }}</td>
+                                    <td>{{ item.form1NoofPkgs }}</td>
+                                    <td>{{ item.form1NoofShps }}</td>
+                                    <td>{{ item.form1Weight }}</td>
+                                    <td>{{ item.form1ActualNoofPackages }}</td>
+                                    <td>{{ item.form1ActualWeight }}</td>
+                                    <td>{{ item.form2NoofBags }}</td>
+                                    <td>{{ item.form2NoofShps }}</td>
+                                    <td>{{ item.form2NoofPkgs }}</td>
+                                    <td>{{ item.form2Weight }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
 </form>
