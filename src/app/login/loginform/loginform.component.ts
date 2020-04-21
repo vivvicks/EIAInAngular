@@ -5,6 +5,8 @@ import { md5 } from '../../_interfaces/md5';
 import { FormGroup, FormControl, Validators } from '../../../../node_modules/@angular/forms';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ErrorHandlerService } from '../../shared/services/error-handler.service';
+import { GlobalValue } from 'src/app/shared/services/global.service';
+import { GlobalConfig } from 'src/app/_interfaces/UserManagement/userInfo.modal';
 
 
 @Component({
@@ -17,9 +19,11 @@ export class LoginformComponent implements OnInit {
   public errorMessage = '';
   public loginForm: FormGroup;
   RandomNumber: number;
+
   constructor(private repository: RepositoryService,
               private errorHandler: ErrorHandlerService,
-              private router: Router) { }
+              private router: Router,
+              private globalValue: GlobalValue) { }
 
   ngOnInit() {
     this.Clear();
@@ -61,10 +65,14 @@ export class LoginformComponent implements OnInit {
       };
       this.repository.create('api/Login/login', login)
           .subscribe(response => {
-        const UserInfo = (<any>response).userInfo;
-        const TokenString = (<any>response).tokenString;
-        localStorage.setItem('UserInfo', JSON.stringify({UserInfo : UserInfo}));
-        localStorage.setItem('jwt',  JSON.stringify({TokenString : TokenString}));
+        // const UserInfo = (<any>response).userInfo;
+        // const TokenString = response[0].tokenString;
+        // console.log(response[0].tokenString)
+        this.globalValue.setGV(response);
+        // this.globalValue.globalConfig.tokenString = TokenString;
+        // console.log(this.globalValue.getGV());
+        // localStorage.setItem('UserInfo', JSON.stringify({UserInfo : UserInfo}));
+        // localStorage.setItem('jwt',  JSON.stringify({TokenString}));
         this.invalidLogin = false;
         this.router.navigate(['home']);
       }, err => {
@@ -77,8 +85,9 @@ export class LoginformComponent implements OnInit {
 
   Clear() {
     // remove user from local storage to log user out
-    localStorage.removeItem('UserInfo');
-    localStorage.removeItem('jwt');
+    // localStorage.removeItem('UserInfo');
+    // localStorage.removeItem('jwt');
+    this.globalValue.clearGV();
 }
 
    getRandomInt(min, max) {

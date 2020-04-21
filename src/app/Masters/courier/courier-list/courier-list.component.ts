@@ -5,6 +5,7 @@ import { ErrorHandlerService } from 'src/app/shared/services/error-handler.servi
 import { Router } from '@angular/router';
 import { VWEDTCOURIERMST } from 'src/app/_interfaces/Masters/VWEDTCOURIERMST';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { GlobalValue } from 'src/app/shared/services/global.service';
 
 @Component({
   selector: 'app-courier-list',
@@ -24,7 +25,8 @@ export class CourierListComponent implements OnInit {
   constructor(private repository: RepositoryService,
               private errorHandler: ErrorHandlerService,
               private router: Router,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private globalValue: GlobalValue) { }
 
   itemsPerPages = [
     new DropDownList(1, '5'),
@@ -87,9 +89,9 @@ export class CourierListComponent implements OnInit {
   }
 
   public GetAllCourier(RoleFormValue) {
-    const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
+    // const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
     // tslint:disable-next-line:max-line-length
-    this.repository.getData('api/RoleCreation/GetAllRoles?curName=' + RoleFormValue.CouriercompanynameControl + '&curCode=' + RoleFormValue.CouriercompanycodeControl + '&TerminalCode=' + currentUser.UserInfo[0].terminalCode)
+    this.repository.getData('api/RoleCreation/GetAllRoles?curName=' + RoleFormValue.CouriercompanynameControl + '&curCode=' + RoleFormValue.CouriercompanycodeControl + '&TerminalCode=' + this.globalValue.getGV().terminalCode)
       .subscribe(response => {
         this.vWEDTCOURIERMST = response as VWEDTCOURIERMST[];
       }, err => {

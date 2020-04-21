@@ -8,6 +8,7 @@ import { UserDetail } from '../../../../_interfaces/UserManagement/VWUserDetail.
 import { NgForm } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { GlobalValue } from 'src/app/shared/services/global.service';
 
 @Component({
   selector: 'app-user-create',
@@ -75,7 +76,8 @@ export class UserCreateComponent implements OnInit {
   constructor(private repository: RepositoryService,
     private errorHandler: ErrorHandlerService,
     private router: Router,
-    private modalService: BsModalService) {
+    private modalService: BsModalService,
+    private globalValue: GlobalValue) {
     this.datePickerConfig = Object.assign({},
       {
         dateInputFormat: 'DD/MM/YYYY'
@@ -102,7 +104,7 @@ export class UserCreateComponent implements OnInit {
       return;
     }
 
-    const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
+    // const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
     const SelectedTerminal: number = form.value.P1;
     let TerminalCode: string;
     switch (SelectedTerminal) {
@@ -146,7 +148,7 @@ export class UserCreateComponent implements OnInit {
       name: null,
       mC_Status: 'A',
       status: 'A',
-      createdBy: currentUser.UserInfo[0].userMstID,
+      createdBy: this.globalValue.getGV().userMstID.toString(),
       createdOn: null,
     };
 

@@ -9,6 +9,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { NgForm } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { GlobalValue } from 'src/app/shared/services/global.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class UserUpdateComponent implements OnInit {
   modalRef: BsModalRef;
 
   constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService, private router: Router,
-    private activeRoute: ActivatedRoute, private datePipe: DatePipe, private modalService: BsModalService) {
+    private activeRoute: ActivatedRoute, private datePipe: DatePipe, private modalService: BsModalService,
+    private globalValue: GlobalValue) {
     this.datePickerConfig = Object.assign({},
       {
         dateInputFormat: 'DD/MM/YYYY'
@@ -125,7 +127,7 @@ export class UserUpdateComponent implements OnInit {
       return;
     }
 
-    const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
+    // const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
     const SelectedTerminal: string = form.value.P1;
     let TerminalCode: string;
     switch (SelectedTerminal) {
@@ -169,7 +171,7 @@ export class UserUpdateComponent implements OnInit {
       name: null,
       mC_Status: 'A',
       status: 'A',
-      createdBy: currentUser.UserInfo[0].loginID,
+      createdBy: this.globalValue.getGV().loginID,
       createdOn: null,
     };
 

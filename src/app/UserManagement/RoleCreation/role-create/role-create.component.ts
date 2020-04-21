@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { DatePipe } from '@angular/common';
+import { GlobalValue } from 'src/app/shared/services/global.service';
 
 @Component({
   selector: 'app-role-create',
@@ -22,7 +23,8 @@ export class RoleCreateComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private router: Router,
     private modalService: BsModalService,
-    public datepipe: DatePipe) { }
+    public datepipe: DatePipe,
+    private globalValue: GlobalValue) { }
 
   ngOnInit() {
   }
@@ -32,7 +34,7 @@ export class RoleCreateComponent implements OnInit {
   }
 
   public createRole(RoleFormValue, template: TemplateRef<any>) {
-    const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
+    // const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
     let todaysDate = new Date();
 
     let Role : VsecRoleMst = {
@@ -43,7 +45,7 @@ export class RoleCreateComponent implements OnInit {
       activeFlag: 'Y',
       status: 'A',
       mcStatus: 'A',
-      createdBy: currentUser.UserInfo[0].loginID,
+      createdBy: this.globalValue.getGV().loginID,
       createdOn: this.datepipe.transform(todaysDate, 'yyyy-MM-dd HH:mm:ss'),
       updatedBy: null,
       updatedOn: null,

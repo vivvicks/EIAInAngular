@@ -6,6 +6,7 @@ import { ErrorHandlerService } from 'src/app/shared/services/error-handler.servi
 import { MFlightmasterMst, GetFlightDetails, MCourierMst, GetForm1CheckStatus } from 'src/app/_interfaces/Import/MFlightmasterMST.model';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { GlobalValue } from 'src/app/shared/services/global.service';
 
 @Component({
   selector: 'app-form-i',
@@ -37,6 +38,7 @@ export class FormIComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private repository: RepositoryService,
               private errorHandler: ErrorHandlerService,
+              private globalValue: GlobalValue,
               private modalService: BsModalService) {
                 this.datePickerConfig = Object.assign({},
                   {
@@ -57,8 +59,8 @@ export class FormIComponent implements OnInit {
       'airlineName' : [''],
       'AirportOfShipment' : [''],
       'AirportOfArrival' : [''],
-      'hrs': [''],
-      'min': [''],
+      'hrs': ['', Validators.required],
+      'min': ['', Validators.required],
       'IGMNoControl': ['', Validators.required],
       'MAWBNoControl': ['', Validators.required],
       'DateOfArrivalControl' : [new Date(), Validators.required],
@@ -105,9 +107,9 @@ export class FormIComponent implements OnInit {
   }
 
   public GetFlightLst() {
-    const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
+    // const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
     // tslint:disable-next-line:max-line-length
-    this.repository.getData('api/Utility/getFlightLst?terminalCode=' + currentUser.UserInfo[0].terminalCode + '&airlineCode=' + '' + '&flightType=I')
+    this.repository.getData('api/Utility/getFlightLst?terminalCode=' + this.globalValue.getGV().terminalCode + '&airlineCode=' + '' + '&flightType=I')
       .subscribe(response => {
         this.MFlightmasterMst = response as MFlightmasterMst[];
       }, err => {
@@ -117,9 +119,9 @@ export class FormIComponent implements OnInit {
     }
 
   public GetFlightDetails(FlightNumber: string) {
-    const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
+    // const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
     this.repository.getData('api/Utility/GetFlightDetails?FlightNumber=' + FlightNumber
-    + '&terminalCode=' + currentUser.UserInfo[0].terminalCode )
+    + '&terminalCode=' + this.globalValue.getGV().terminalCode )
       .subscribe(response => {
         this.getFlightDetails = response as GetFlightDetails[];
         this.form1Group.patchValue({
@@ -139,8 +141,8 @@ export class FormIComponent implements OnInit {
   }
 
   public GetCourierLst() {
-    const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
-     this.repository.getData('api/Utility/GetCourierLst?terminalCode=' + currentUser.UserInfo[0].terminalCode )
+     // const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
+     this.repository.getData('api/Utility/GetCourierLst?terminalCode=' + this.globalValue.getGV().terminalCode)
       .subscribe(response => {
         this.MCourierMst = response as MCourierMst[];
       }, err => {
@@ -156,10 +158,10 @@ export class FormIComponent implements OnInit {
       return;
     }
 
-    const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
+     // const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
      this.repository.getData('api/Form1/GetIGMDetails?IGMNumber=' + this.form1Group.controls['IGMNoControl'].value
                                                                   + '&MAWBNumber=' + this.form1Group.controls['MAWBNoControl'].value
-                                                                  + '&terminalCode=' +  currentUser.UserInfo[0].terminalCode)
+                                                                  + '&terminalCode=' +  this.globalValue.getGV().terminalCode)
       .subscribe(response => {
         this.GetForm1CheckStatus = response as GetForm1CheckStatus[];
         this.IGMFlightNumber = this.GetForm1CheckStatus[0].flightNumber;

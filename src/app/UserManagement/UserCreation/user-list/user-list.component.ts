@@ -4,6 +4,7 @@ import { ErrorHandlerService } from '../../../shared/services/error-handler.serv
 import { UserDetail } from '../../../_interfaces/UserManagement/VWUserDetail.modal';
 import { DropDownList } from '../../../_interfaces/dropdownlist.model';
 import { Router } from '@angular/router';
+import { GlobalValue } from 'src/app/shared/services/global.service';
 
 @Component({
   selector: 'app-user-list',
@@ -28,7 +29,8 @@ export class UserListComponent implements OnInit {
 
 constructor(private repository: RepositoryService,
               private errorHandler: ErrorHandlerService,
-              private router: Router) { }
+              private router: Router,
+              private globalValue: GlobalValue) { }
 
   selectChangeHandler(id) {
     this.itemsPerPage = null;
@@ -44,8 +46,8 @@ constructor(private repository: RepositoryService,
   }
 
   ngOnInit() {
-    const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
-    this.GetAllUsers(currentUser.UserInfo[0].terminalCode);
+    // const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
+    this.GetAllUsers(this.globalValue.getGV().terminalCode);
   }
 
   public GetAllUsers(TerminalCode) {

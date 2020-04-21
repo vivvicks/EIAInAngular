@@ -10,6 +10,7 @@ import { VsecUserRoleMap } from 'src/app/_interfaces/UserManagement/VsecUserRole
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
+import { GlobalValue } from 'src/app/shared/services/global.service';
 
 @Component({
   selector: 'app-userrolemap-list',
@@ -67,7 +68,8 @@ export class UserrolemapListComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private fb: FormBuilder,
     private modalService: BsModalService,
-    private router: Router) { }
+    private router: Router,
+    private globalValue: GlobalValue) { }
 
   ngOnInit() {
     this.buildForm();
@@ -114,9 +116,9 @@ export class UserrolemapListComponent implements OnInit {
   }
 
   public GetAllMappedRolesUsers() {
-    const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
+    // const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
     // tslint:disable-next-line:max-line-length
-    this.repository.getData('api/UserRoleMap/GetRoleMapUsers?roleID=' + this.selectedOption.roleId + '&Status=' + this.selectedStatus + '&TerminalCode=' + currentUser.UserInfo[0].terminalCode)
+    this.repository.getData('api/UserRoleMap/GetRoleMapUsers?roleID=' + this.selectedOption.roleId + '&Status=' + this.selectedStatus + '&TerminalCode=' + this.globalValue.getGV().terminalCode)
       .subscribe(response => {
         this.vwUserDetail = response as UserDetail[];
         if (this.selectedStatus === 'Allocated') {
@@ -164,7 +166,7 @@ export class UserrolemapListComponent implements OnInit {
   }
 
   public Allocate(template) {
-    const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
+    // const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
 
     for (let i = 0; i < this.checkedList.length; i++) {
       let roleMapObj = new VsecUserRoleMap();
@@ -175,7 +177,7 @@ export class UserrolemapListComponent implements OnInit {
       } else {
         roleMapObj.Status =  'N';
       }
-      roleMapObj.CreatedBy = currentUser.UserInfo[0].loginID;
+      roleMapObj.CreatedBy = this.globalValue.getGV().loginID;
       this.roleMapList.push(roleMapObj);
     }
 

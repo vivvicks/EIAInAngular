@@ -2,22 +2,25 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { RepositoryService } from '../shared/services/repository.service';
+import { GlobalValue } from '../shared/services/global.service';
+
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(private repository: RepositoryService) {}
+    constructor( private  globalValue: GlobalValue) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
             if (err.status === 401) {
                 // auto logout if 401 response returned from api
-                localStorage.removeItem('UserInfo');
-                localStorage.removeItem('jwt');
+                // localStorage.removeItem('UserInfo');
+                // localStorage.removeItem('jwt');
+                this.globalValue.clearGV();
                 location.reload(true);
+                // this.globalConfig[0].tokenString = '';
             }
             const error = err.error.message || err.statusText;
-            console.log(error);
+            // console.log(error);
             return throwError(error);
         }));
     }

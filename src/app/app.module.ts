@@ -57,6 +57,8 @@ import { RepositoryService } from './shared/services/repository.service';
 import { EnvironmentUrlService } from './shared/services/environment-url.service';
 import { ErrorInterceptor } from './_helper/error.interceptor';
 import { DatePipe } from '@angular/common';
+import { JwtInterceptor } from './_helper/jwt.interceptor';
+import { GlobalValue } from './shared/services/global.service';
 
   export function tokenGetter() {
         return localStorage.getItem('jwt');
@@ -188,9 +190,11 @@ const appRoutes: Routes = [
     AuthGuard,
     EnvironmentUrlService,
     RepositoryService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     ErrorHandlerService,
-    DatePipe
+    DatePipe,
+    GlobalValue
   ],
   bootstrap: [AppComponent]
 })

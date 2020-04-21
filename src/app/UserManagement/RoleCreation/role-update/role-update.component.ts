@@ -7,6 +7,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { DatePipe } from '@angular/common';
 import { FormGroup, FormControl } from '@angular/forms';
+import { GlobalValue } from 'src/app/shared/services/global.service';
 
 @Component({
   selector: 'app-role-update',
@@ -25,7 +26,8 @@ export class RoleUpdateComponent implements OnInit {
     private router: Router,
     private modalService: BsModalService,
     public datepipe: DatePipe,
-    private activeRoute: ActivatedRoute) { }
+    private activeRoute: ActivatedRoute,
+    private globalValue: GlobalValue) { }
 
   ngOnInit() {
     this.getRoleById();
@@ -52,7 +54,7 @@ export class RoleUpdateComponent implements OnInit {
   }
 
   public updateRole(RoleFormValue, template: TemplateRef<any>) {
-    const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
+    // const currentUser = JSON.parse(localStorage.getItem('UserInfo'));
     let todaysDate = new Date();
     console.log(this.datepipe.transform(todaysDate, 'yyyy-MM-dd HH:mm:ss'));
     let Role : VsecRoleMst = {
@@ -65,9 +67,9 @@ export class RoleUpdateComponent implements OnInit {
       mcStatus: this.vsecRoleMst.mcStatus,
       createdBy: this.vsecRoleMst.createdBy,
       createdOn: this.vsecRoleMst.createdOn,
-      updatedBy: currentUser.UserInfo[0].loginID,
+      updatedBy: this.globalValue.getGV().loginID,
       updatedOn: this.datepipe.transform(todaysDate, 'yyyy-MM-dd HH:mm:ss'),
-      lastUpDtBy: currentUser.UserInfo[0].loginID,
+      lastUpDtBy: this.globalValue.getGV().loginID,
       lastUpDtOn: this.datepipe.transform(todaysDate, 'yyyy-MM-dd HH:mm:ss'),
     };
 
