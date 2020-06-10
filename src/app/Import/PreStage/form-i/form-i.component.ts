@@ -34,6 +34,7 @@ export class FormIComponent implements OnInit {
   public IGMNumber = '';
   public IGMDate = '';
   submitted = false;
+  checkIGMNumber = false;
 
   constructor(private fb: FormBuilder,
               private repository: RepositoryService,
@@ -152,9 +153,10 @@ export class FormIComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>) {
-    this.submitted = true;
+    this.checkIGMNumber = true;
 
-    if (this.form1Group.controls.IGMNoControl.invalid) {
+    if (this.form1Group.controls.IGMNoControl.invalid && this.form1Group.controls.MAWBNoControl.invalid) {
+      console.log('hi');
       return;
     }
 

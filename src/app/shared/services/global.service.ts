@@ -11,7 +11,7 @@ constructor() {
 }
 
 setGV(_globalConfig: any) {
-    console.log(_globalConfig[0].tokenString);
+
     this.globalConfig.tokenString = _globalConfig[0].tokenString;
     this.globalConfig.loginID = _globalConfig[0].loginID;
     this.globalConfig.validUser = _globalConfig[0].validUser;
